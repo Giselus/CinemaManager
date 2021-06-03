@@ -12,8 +12,8 @@
 <AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.mainMenuController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="141.0" layoutX="-60.0" layoutY="-37.0" stroke="#f5821e" strokeType="INSIDE" width="1200.0" />
-      <Button layoutX="866.0" layoutY="28.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="135.0" text="Sign up" />
-      <Button onAction="#switchToSceneLogiIn" layoutX="721.0" layoutY="28.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="135.0" text="Log in" />
+      <Button layoutX="866.0" layoutY="28.0" mnemonicParsing="false" prefHeight="49.0" onAction="#switchToSceneSignUp" prefWidth="135.0" text="Sign up" />
+      <Button layoutX="721.0" layoutY="28.0" mnemonicParsing="false" onAction="#switchToSceneLogiIn" prefHeight="49.0" prefWidth="135.0" text="Log in" />
       <Text fx:id="recomendLabel" fill="WHITE" layoutX="61.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recommend now " wrappingWidth="304.7960510253906">
          <font>
             <Font name="Apple Chancery" size="13.0" />

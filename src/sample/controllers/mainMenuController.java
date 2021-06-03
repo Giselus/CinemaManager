@@ -33,4 +33,14 @@ public class mainMenuController {
         scene.getStylesheets().add(css);
         stage.show();
     }
+    public void switchToSceneSignUp(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
+                .getResource("/sample/fxml/signUp.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        String css=this.getClass().getResource("/sample/style/styleSignUp.css").toExternalForm();
+        scene.getStylesheets().add(css);
+        stage.show();
+    }
 }
