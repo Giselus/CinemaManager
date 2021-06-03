@@ -1,0 +1,32 @@
+#container{
+    -fx-background-color:#000;
+}
+#mainLogIn{
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-text-fill: #fff;
+}
+.text-field{
+    -fx-background-color:#f5821e;
+    -fx-font-size: 20px;
+    -fx-border-color: black;
+    -fx-border-radius:10px;
+    -fx-background-radius: 10px;
+}
+.text{
+    -fx-text-fill: #fff;
+}
+
+.button{
+    -fx-background-color:#000;
+    -fx-cursor:hand;
+    -fx-border-color: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-font-style:"Verdana";
+    -fx-text-fill: #fff;
+}
+.button:hover{
+    -fx-text-fill: #fff;
+    -fx-border-color: #fff;
+}
