@@ -1,0 +1,19 @@
+DROP SEQUENCE IF EXISTS idSeq CASCADE;
+CREATE SEQUENCE idSeq start 1;
+
+CREATE OR REPLACE FUNCTION klient_ins() RETURNS TRIGGER AS $$
+BEGIN
+    NEW.id = nextval('idSeq');
+    RETURN NEW;
+END;
+$$ language plpgsql;
+
+CREATE OR REPLACE FUNCTION klient_upd() RETURNS TRIGGER AS $$
+BEGIN
+    NEW.id = OLD.id;
+    RETURN NEW;
+END;
+$$ language plpgsql;
+
+CREATE TRIGGER klient_ins BEFORE INSERT ON klient FOR EACH ROW EXECUTE PROCEDURE klient_ins();
+CREATE TRIGGER klient_upd BEFORE UPDATE ON klient FOR EACH ROW EXECUTE PROCEDURE klient_upd();
