@@ -26,7 +26,7 @@
       <Line endX="-100.00003051757812" endY="-133.6417236328125" layoutX="446.0" layoutY="349.0" startX="-100.00003051757812" startY="125.49996948242188" stroke="#f5821e" />
       <Line endX="100.92913818359375" endY="-12.848800659179688" layoutX="606.0" layoutY="229.0" startX="102.25433349609375" startY="246.29287719726562" stroke="#f5821e" />
       <Line endX="249.5472412109375" endY="-3.0517578125E-5" layoutX="458.0" layoutY="475.0" startX="-111.84283447265625" startY="-3.0517578125E-5" stroke="#f5821e" />
-      <Button layoutX="523.0" layoutY="379.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="52.0" prefWidth="149.0" text="Back to menu" />
+      <Button layoutX="523.0" layoutY="379.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="52.0" prefWidth="149.0" text="Back to menu" />
       <PasswordField fx:id="passwordID" layoutX="443.0" layoutY="322.0" />
    </children>
 </AnchorPane>

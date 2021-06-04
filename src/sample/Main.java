@@ -5,12 +5,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Pair;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Main extends Application {
     public static Stage mainStage;
     public static Object controller;
 
+    private static ArrayList<Pair<String, String>> previousScenes = new ArrayList<>();
+    private static String currentScene, currentStyle;
     public static void setScene(String tmp,String styleCss){
+        previousScenes.add(new Pair<>(currentScene,currentStyle));
+        currentScene = tmp;
+        currentStyle = styleCss;
         try {
             FXMLLoader loader=new FXMLLoader();
             loader.setLocation(Main.class.getResource(tmp));
@@ -23,18 +35,55 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    public static void setLastScene(){
+        if(previousScenes.isEmpty())
+            return;
+        currentScene = previousScenes.get(previousScenes.size()-1).getKey();
+        currentStyle = previousScenes.get(previousScenes.size()-1).getValue();
+        previousScenes.remove(previousScenes.size()-1);
+        try {
+            FXMLLoader loader=new FXMLLoader();
+            loader.setLocation(Main.class.getResource(currentScene));
+            Parent root= loader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Main.class.getResource(currentStyle).toExternalForm());
+            mainStage.setScene(scene);
+            mainStage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void initializeDatabase(){
+        try {
+            String query = Files.readString(Paths.get(Main.class.getResource("/sample/SQL/clear.sql").toURI()));
+            QueryExecutor.executeQuery(query);
+            query = Files.readString(Paths.get(Main.class.getResource("/sample/SQL/new_kino.sql").toURI()));
+            QueryExecutor.executeQuery(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void initializeFunctions(){
+        try {
+            String query = Files.readString(Paths.get(Main.class.getResource("/sample/SQL/func.sql").toURI()));
+            QueryExecutor.executeQuery(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        initializeDatabase();
+        initializeFunctions();
+
         primaryStage.setResizable(false);
         mainStage=primaryStage;
         setScene("fxml/sample.fxml","/sample/style/style.css");
 
-        DBConnector.connect();
-    }
-    public void logIn(Stage primaryStage) throws Exception{
-        primaryStage.setResizable(false);
-        mainStage=primaryStage;
-        setScene("fxml/logLn.fxml","/sample/style/style.css");
     }
     public static void main(String[] args) {
         launch(args);

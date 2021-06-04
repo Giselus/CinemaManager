@@ -23,24 +23,9 @@ public class mainMenuController {
     }
     //change scene
     public void switchToSceneLogiIn(ActionEvent event) throws IOException {
-        System.out.println("ZMIANA");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
-                .getResource("/sample/fxml/logIn.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        String css=this.getClass().getResource("/sample/style/styleLogIn.css").toExternalForm();
-        scene.getStylesheets().add(css);
-        stage.show();
+        Main.setScene("/sample/fxml/logIn.fxml","/sample/style/styleLogIn.css");
     }
     public void switchToSceneSignUp(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
-                .getResource("/sample/fxml/signUp.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        String css=this.getClass().getResource("/sample/style/styleSignUp.css").toExternalForm();
-        scene.getStylesheets().add(css);
-        stage.show();
+        Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css");
     }
 }

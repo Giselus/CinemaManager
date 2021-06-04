@@ -1,5 +1,8 @@
 package sample;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -13,6 +16,7 @@ public class QueryExecutor {
             return statement.executeQuery(selectQuery);
         }catch(Exception e){
             throw new RuntimeException(e.getMessage());
+            //TODO: change to some alert
         }
     }
 
@@ -20,9 +24,10 @@ public class QueryExecutor {
         try{
             Connection connection = DBConnector.connect();
             Statement statement = connection.createStatement();
-            statement.executeQuery(query);
+            statement.execute(query);
         }catch(Exception e){
             throw new RuntimeException(e.getMessage());
+            //TODO: change to some alert
         }
     }
 }

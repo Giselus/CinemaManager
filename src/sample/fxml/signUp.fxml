@@ -14,16 +14,16 @@
       <Text fill="WHITE" layoutX="357.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
       <Text fill="WHITE" layoutX="357.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
       <Text fill="WHITE" layoutX="357.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-      <TextField layoutX="415.0" layoutY="233.0" />
-      <TextField layoutX="415.0" layoutY="270.0" />
-      <TextField layoutX="415.0" layoutY="305.0" />
+      <TextField fx:id="nameField" layoutX="415.0" layoutY="233.0" />
+      <TextField fx:id="surnameField" layoutX="415.0" layoutY="270.0" />
+      <TextField fx:id="loginField" layoutX="415.0" layoutY="305.0" />
       <Line endX="100.0" layoutX="501.0" layoutY="151.0" startX="-100.0" stroke="#f5821e" />
-      <Button layoutX="357.0" layoutY="388.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" text="Sign up" />
-      <Button layoutX="496.0" layoutY="388.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" text="Back to menu" onAction="#switchToSceneMenu" />
+      <Button layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#register" prefHeight="36.0" prefWidth="130.0" text="Sign up" />
+      <Button layoutX="496.0" layoutY="388.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="36.0" prefWidth="130.0" text="Back to menu" />
       <Line endX="-36.41644287109375" endY="-28.206680297851562" layoutX="355.0" layoutY="231.0" startX="-37.123565673828125" startY="215.8477783203125" stroke="#f5821e" />
       <Line endX="-36.41644287109375" endY="-28.206680297851562" layoutX="355.0" layoutY="231.0" startX="318.08355712890625" startY="-28.706680297851562" stroke="#f5821e" />
       <Line endX="-36.41644287109375" endY="-28.206680297851562" layoutX="710.0" layoutY="231.0" startX="-35.2093505859375" startY="215.08621215820312" stroke="#f5821e" />
       <Line endX="-36.41644287109375" endY="-28.206680297851562" layoutX="355.0" layoutY="475.0" startX="319.08355712890625" startY="-28.097808837890625" stroke="#f5821e" />
-      <PasswordField layoutX="415.0" layoutY="343.0" />
+      <PasswordField fx:id="passwordField" layoutX="415.0" layoutY="343.0" />
    </children>
 </AnchorPane>
