@@ -22,10 +22,10 @@ public class mainMenuController {
         firstImageView.setImage(firstImage);
     }
     //change scene
-    public void switchToSceneLogiIn(ActionEvent event) throws IOException {
+    public void switchToSceneLogiIn(){
         Main.setScene("/sample/fxml/logIn.fxml","/sample/style/styleLogIn.css");
     }
-    public void switchToSceneSignUp(ActionEvent event) throws IOException {
+    public void switchToSceneSignUp(){
         Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css");
     }
 }

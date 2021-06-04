@@ -10,13 +10,13 @@
 
 <AnchorPane fx:id="container" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.logInController">
    <children>
-      <Button layoutX="377.0" layoutY="379.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="130.0" text="Log in" />
+      <Button layoutX="377.0" layoutY="379.0" mnemonicParsing="false" onAction="#login" prefHeight="52.0" prefWidth="130.0" text="Log in" />
       <Text fx:id="mainLogIn" fill="WHITE" layoutX="498.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in" wrappingWidth="112.744140625" />
       <Text fill="WHITE" layoutX="367.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <font>
             <Font name="Baghdad Regular" size="16.0" />
          </font></Text>
-      <TextField layoutX="441.0" layoutY="250.0" />
+      <TextField fx:id="loginField" layoutX="441.0" layoutY="250.0" />
       <Text fill="WHITE" layoutX="354.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font size="16.0" />
@@ -27,6 +27,6 @@
       <Line endX="100.92913818359375" endY="-12.848800659179688" layoutX="606.0" layoutY="229.0" startX="102.25433349609375" startY="246.29287719726562" stroke="#f5821e" />
       <Line endX="249.5472412109375" endY="-3.0517578125E-5" layoutX="458.0" layoutY="475.0" startX="-111.84283447265625" startY="-3.0517578125E-5" stroke="#f5821e" />
       <Button layoutX="523.0" layoutY="379.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="52.0" prefWidth="149.0" text="Back to menu" />
-      <PasswordField fx:id="passwordID" layoutX="443.0" layoutY="322.0" />
+      <PasswordField fx:id="passwordField" layoutX="443.0" layoutY="322.0" />
    </children>
 </AnchorPane>

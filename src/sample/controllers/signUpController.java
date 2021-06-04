@@ -25,7 +25,7 @@ public class signUpController {
     @FXML
     TextField passwordField;
 
-    public void backToPreviousScene(ActionEvent event) throws IOException {
+    public void backToPreviousScene(){
         Main.setLastScene();
     }
 
@@ -37,6 +37,7 @@ public class signUpController {
         String query = "INSERT INTO klient VALUES(NULL,'" + name + "','" + surname + "','2000-02-02','" +login + "','" + password + "');";
         try{
             QueryExecutor.executeQuery(query);
+            backToPreviousScene();
         }catch(Exception e){
             e.printStackTrace();
         }

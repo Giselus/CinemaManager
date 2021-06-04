@@ -19,6 +19,9 @@ public class Main extends Application {
 
     private static ArrayList<Pair<String, String>> previousScenes = new ArrayList<>();
     private static String currentScene, currentStyle;
+
+    public static int ID;
+    public static boolean Logged = false;
     public static void setScene(String tmp,String styleCss){
         previousScenes.add(new Pair<>(currentScene,currentStyle));
         currentScene = tmp;
@@ -77,12 +80,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        initializeDatabase();
+        //initializeDatabase();
         initializeFunctions();
 
         primaryStage.setResizable(false);
         mainStage=primaryStage;
-        setScene("fxml/sample.fxml","/sample/style/style.css");
+        setScene("fxml/base.fxml","/sample/style/style.css");
 
     }
     public static void main(String[] args) {
