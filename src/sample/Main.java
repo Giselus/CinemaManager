@@ -28,6 +28,8 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         mainStage=primaryStage;
         setScene("fxml/sample.fxml","/sample/style/style.css");
+
+        DBConnector.connect();
     }
     public void logIn(Stage primaryStage) throws Exception{
         primaryStage.setResizable(false);
