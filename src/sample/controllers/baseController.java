@@ -54,19 +54,11 @@ public class baseController {
     @FXML
     private void applyFilter(){
         //do something
-        switch(filterChoice.getSelectionModel().getSelectedItem()){
-            case "Score from highest":
-                filter = FilterType.ScoreDown;
-                break;
-            case "Score from lowest":
-                filter = FilterType.ScoreUp;
-                break;
-            case "From A to Z":
-                filter = FilterType.AlphabeticalDown;
-                break;
-            case "From Z to A":
-                filter = FilterType.AlphabeticalUp;
-                break;
+        switch (filterChoice.getSelectionModel().getSelectedItem()) {
+            case "Score from highest" -> filter = FilterType.ScoreDown;
+            case "Score from lowest" -> filter = FilterType.ScoreUp;
+            case "From A to Z" -> filter = FilterType.AlphabeticalDown;
+            case "From Z to A" -> filter = FilterType.AlphabeticalUp;
         }
 
         refreshMovies();
@@ -76,37 +68,22 @@ public class baseController {
 
     private void refreshMovies(){
         // filters
+        //TODO: add filter for genre
         filterChoice.setItems(FXCollections.observableArrayList(
                 "Score from highest", "Score from lowest" , "From A to Z", "From Z to A"));
-        switch(filter){
-            case ScoreDown:
-                filterChoice.getSelectionModel().select(0);
-                break;
-            case ScoreUp:
-                filterChoice.getSelectionModel().select(1);
-                break;
-            case AlphabeticalDown:
-                filterChoice.getSelectionModel().select(2);
-                break;
-            case AlphabeticalUp:
-                filterChoice.getSelectionModel().select(3);
-                break;
+        switch (filter) {
+            case ScoreDown -> filterChoice.getSelectionModel().select(0);
+            case ScoreUp -> filterChoice.getSelectionModel().select(1);
+            case AlphabeticalDown -> filterChoice.getSelectionModel().select(2);
+            case AlphabeticalUp -> filterChoice.getSelectionModel().select(3);
         }
         // movies
         String query = "SELECT * FROM film_filtry ";
-        switch(filter){
-            case ScoreDown:
-                query += "ORDER BY score DESC";
-                break;
-            case ScoreUp:
-                query += "ORDER BY score ASC";
-                break;
-            case AlphabeticalDown:
-                query += "ORDER BY tytul DESC";
-                break;
-            case AlphabeticalUp:
-                query += "ORDER BY tytul ASC";
-                break;
+        switch (filter) {
+            case ScoreDown -> query += "ORDER BY score DESC";
+            case ScoreUp -> query += "ORDER BY score ASC";
+            case AlphabeticalDown -> query += "ORDER BY tytul DESC";
+            case AlphabeticalUp -> query += "ORDER BY tytul ASC";
         }
         query += " LIMIT 10 OFFSET ";
         query += String.valueOf((page-1) * 10);
@@ -114,10 +91,13 @@ public class baseController {
             ResultSet result = QueryExecutor.executeSelect(query);
             while (result.next()) {
                 System.out.println(result);
+                //Todo: just generate movies and so
             }
         }catch(Exception e){
             e.printStackTrace();
         }
+
         // pages
+
     }
 }
