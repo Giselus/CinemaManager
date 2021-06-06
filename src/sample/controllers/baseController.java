@@ -124,9 +124,9 @@ public class baseController {
             ResultSet result = QueryExecutor.executeSelect(query);
             movieBox.getChildren().clear();
             while (result.next()) {
-                int id = result.getInt(1);
-                String title = result.getString(3);
-                float score = result.getFloat(2);
+                int id = result.getInt("id");
+                String title = result.getString("tytul");
+                float score = result.getFloat("score");
                 score = Math.round(score * 100)/100f;
                 //Todo: just generate movies and so
                 AnchorPane moviePane = new AnchorPane();

@@ -57,12 +57,12 @@
                            </font>
                         </Text>
                         <ImageView fx:id="moviePoster" fitHeight="400.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox fx:id="movieCast" layoutX="140.0" layoutY="400.0" prefWidth="800.0" />
+                        <VBox fx:id="movieCast" layoutX="140.0" layoutY="400.0" prefWidth="800.0" spacing="15.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="commentArea" layoutX="200.0" prefHeight="200.0" prefWidth="600.0" />
+                        <TextArea fx:id="commentArea" layoutX="200.0" prefHeight="200.0" prefWidth="600.0" wrapText="true" />
                         <Text layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write your comment">
                            <font>
                               <Font size="20.0" />

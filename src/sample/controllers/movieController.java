@@ -78,9 +78,36 @@ public class movieController {
                     scoreText.setText(String.valueOf(Math.round(scoreResult.getFloat(1)*100)/100f));
                 }
             }
-            //TODO: add cast
 
-
+            movieCast.getChildren().clear();
+            query = String.format("SELECT * FROM film JOIN produkcja ON id = id_filmu AND id = %d",movieID);
+            ResultSet castInfo = QueryExecutor.executeSelect(query);
+            while(castInfo.next()){
+                String name_surname = null;
+                String position_name = null;
+                int id_pozycji = castInfo.getInt("id_pozycja");
+                int id_osoby = castInfo.getInt("id_osoba");
+                String tmpQuery = String.format("SELECT * FROM osoby WHERE id = %d",id_osoby);
+                ResultSet tmpResult = QueryExecutor.executeSelect(tmpQuery);
+                if(tmpResult.next()){
+                    name_surname = tmpResult.getString("imie") + " " + tmpResult.getString("nazwisko");
+                }
+                tmpQuery = String.format("SELECT * FROM pozycja WHERE id = %d",id_pozycji);
+                tmpResult = QueryExecutor.executeSelect(tmpQuery);
+                if(tmpResult.next()){
+                    position_name = tmpResult.getString("nazwa");
+                }
+                AnchorPane castPane = new AnchorPane();
+                Text nameText = new Text();
+                nameText.setText(name_surname);
+                Text positonText = new Text();
+                positonText.setText(position_name);
+                castPane.getChildren().add(nameText);
+                castPane.getChildren().add(positonText);
+                nameText.setLayoutY(20);
+                positonText.setLayoutY(35);
+                movieCast.getChildren().add(castPane);
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
