@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.movieController">
+    <children>
+        <StackPane prefHeight="150.0" prefWidth="1080.0">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1080.0" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
+                    <children>
+                        <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
+                        <Button fx:id="repertoireButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repertoire" />
+                        <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Log in/account" />
+                        <Button fx:id="signupButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="sign up/log out" />
+                    </children>
+                    <padding>
+                        <Insets right="10.0" />
+                    </padding>
+                </HBox>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema name" StackPane.alignment="CENTER_LEFT">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                    <StackPane.margin>
+                        <Insets left="10.0" />
+                    </StackPane.margin>
+                </Text>
+            </children>
+        </StackPane>
+      <ScrollPane layoutY="150.0" prefHeight="570.0" prefWidth="1100.0">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="1080.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="1080.0">
+                     <children>
+                        <Text fx:id="titleText" layoutX="400.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="scoreText" layoutX="330.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <ImageView fx:id="moviePoster" fitHeight="400.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox fx:id="movieCast" layoutX="140.0" layoutY="400.0" prefWidth="800.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="commentArea" layoutX="200.0" prefHeight="200.0" prefWidth="600.0" />
+                        <Text layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write your comment">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose score(1-10):">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="scoreField" alignment="CENTER" layoutY="120.0" prefHeight="43.0" prefWidth="43.0" text="5">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </TextField>
+                        <Button layoutX="815.0" layoutY="30.0" mnemonicParsing="false" onAction="#publishComment" text="Publish comment" />
+                     </children>
+                  </AnchorPane>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Text fx:id="commentsPageText" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments page:" wrappingWidth="186.97509765625">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="commentsPageField" maxWidth="100.0" />
+                        <Button mnemonicParsing="false" onAction="#applyCommentsFilter" text="Apply" />
+                     </children>
+                  </HBox>
+                  <VBox fx:id="commentsBox" alignment="CENTER" prefHeight="200.0" prefWidth="1080.0" spacing="30.0">
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+    </children>
+
+</AnchorPane>

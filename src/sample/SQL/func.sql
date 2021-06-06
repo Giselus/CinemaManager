@@ -20,17 +20,17 @@ DROP TRIGGER IF EXISTS klient_upd ON klient CASCADE;
 CREATE TRIGGER klient_ins BEFORE INSERT ON klient FOR EACH ROW EXECUTE PROCEDURE klient_ins();
 CREATE TRIGGER klient_upd BEFORE UPDATE ON klient FOR EACH ROW EXECUTE PROCEDURE klient_upd();
 
-CREATE OR REPLACE FUNCTION score(_id int) RETURNS numeric(3,2) AS $$
+CREATE OR REPLACE FUNCTION score(_id int) RETURNS numeric AS $$
 DECLARE
     ilosc int;
-    p numeric(3,2);
+    p numeric;
     f record;
 BEGIN
     ilosc = 0;
     p = 0;
-    FOR f IN (SELECT id_klienta, ocena FROM film JOIN historia_cen ON id_filmu = id
+    FOR f IN (SELECT id_klienta, ocena FROM film JOIN historia_ocen ON id_filmu = id
       WHERE id = _id AND (id_klienta,data_wystawienia)
-      IN (SELECT id_klienta, MAX(data_wystawienia) FROM historia_cen GROUP BY(id_klienta))) LOOP
+      IN (SELECT id_klienta, MAX(data_wystawienia) FROM historia_ocen GROUP BY(id_klienta))) LOOP
         p = p + f.ocena;
         ilosc = ilosc + 1;
     END LOOP;

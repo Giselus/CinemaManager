@@ -21,7 +21,7 @@ public class Main extends Application {
     private static String currentScene, currentStyle;
 
     public static int ID;
-    public static boolean Logged = false;
+    public static boolean logged = false;
     public static void setScene(String tmp,String styleCss){
         previousScenes.add(new Pair<>(currentScene,currentStyle));
         currentScene = tmp;
@@ -63,6 +63,8 @@ public class Main extends Application {
             String query = Files.readString(Paths.get(Main.class.getResource("/sample/SQL/clear.sql").toURI()));
             QueryExecutor.executeQuery(query);
             query = Files.readString(Paths.get(Main.class.getResource("/sample/SQL/new_kino.sql").toURI()));
+            QueryExecutor.executeQuery(query);
+            query = Files.readString(Paths.get(Main.class.getResource("/sample/SQL/wypelnienie.sql").toURI()));
             QueryExecutor.executeQuery(query);
         }catch(Exception e){
             e.printStackTrace();

@@ -36,7 +36,7 @@ public class logInController {
             ResultSet result = QueryExecutor.executeSelect(query);
             if(result.next()){
                 Main.ID = result.getInt("id");
-                Main.Logged = true;
+                Main.logged = true;
             }else{
                 throw new Exception("wrong login or password");
             }
