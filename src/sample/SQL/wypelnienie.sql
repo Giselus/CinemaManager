@@ -158,3 +158,8 @@ INSERT INTO film_wytwornia VALUES
 	(19, 4),
 	(20, 3);
 
+INSERT INTO sala VALUES (1, 8, 15), (2, 6, 12);
+
+INSERT INTO seans VALUES (1, 1,TIMESTAMP '2021-06-06 16:00:00', 1, false, 15, 'oryginal', true), (2, 2,TIMESTAMP '2021-06-06 16:00:00', 2, false, 15, 'oryginal', true),
+(3, 1,TIMESTAMP '2021-05-06 16:00:00s', 1, false, 15, 'oryginal', true);
+

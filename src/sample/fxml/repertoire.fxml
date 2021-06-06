@@ -6,9 +6,57 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.controllers.repertoireController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="myPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.controllers.repertoireController" prefHeight="720.0" prefWidth="1080.0">
+    <StackPane prefHeight="150.0" prefWidth="1080.0">
+        <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1080.0" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
+                <children>
+                    <Button fx:id="testCode" mnemonicParsing="false" text="test" />
+                    <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
+                    <Button fx:id="repertoireButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repertoire" />
+                    <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Log in/account" />
+                    <Button fx:id="signupButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="sign up/log out" />
+                </children>
+                <padding>
+                    <Insets right="10.0" />
+                </padding>
+            </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema name" StackPane.alignment="CENTER_LEFT">
+                <font>
+                    <Font size="28.0" />
+                </font>
+                <StackPane.margin>
+                    <Insets left="10.0" />
+                </StackPane.margin>
+            </Text>
+        </children>
+    </StackPane>
+    <ScrollPane layoutY="150.0" prefHeight="570.0" prefWidth="1080.0">
+        <content>
+            <AnchorPane>
+                <children>
+                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="1080.0" spacing="10.0">
+                        <children>
+                            <Text fx:id="pageText" strokeType="OUTSIDE" strokeWidth="0.0" text="Page:" />
+                            <TextField fx:id="pageField" />
+                            <ChoiceBox fx:id="filterChoice" prefWidth="150.0" />
+                        </children>
+                        <padding>
+                            <Insets right="10.0" />
+                        </padding>
+                    </HBox>
+                    <VBox fx:id="movieBox" layoutY="120.0" prefWidth="1080.0" spacing="20.0">
+                        <padding>
+                            <Insets top="10.0" />
+                        </padding>
+                    </VBox>
+                </children>
+            </AnchorPane>
+        </content>
+    </ScrollPane>
 </AnchorPane>
