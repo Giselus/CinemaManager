@@ -20,6 +20,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1080.0" />
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
                <children>
+                  <Button fx:id="testCode" mnemonicParsing="false" text="test" />
                   <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
                   <Button fx:id="repertoireButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repertoire" />
                   <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Log in/account" />

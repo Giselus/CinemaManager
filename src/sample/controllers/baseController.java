@@ -26,7 +26,8 @@ public class baseController {
     Button loginButton;
     @FXML
     Button signupButton;
-
+    @FXML
+    Button testCode;
     @FXML
     public void initialize(){
         refreshLook();
@@ -38,13 +39,14 @@ public class baseController {
     }
 
     private void refreshUpper(){
-        baseButton.setOnAction(e -> Main.setScene("/sample/fxml/base.fxml","/sample/style/style.css"));
+        baseButton.setOnAction(e -> Main.setScene("/sample/fxml/base.fxml","/sample/style/styleBase.css"));
         repertoireButton.setOnAction(e -> Main.setScene("/sample/fxml/repertoire.fxml","/sample/style/style.css"));
         if(!Main.logged){
             loginButton.setText("Log in");
             loginButton.setOnAction((e) -> Main.setScene("/sample/fxml/logIn.fxml","/sample/style/styleLogIn.css"));
             signupButton.setText("Sign up");
             signupButton.setOnAction((e) -> Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css"));
+            testCode.setOnAction((e) -> Main.setScene("/sample/fxml/reservation.fxml","/sample/style/styleReservation.css"));
         }else{
             //TODO: set Buttons actions
             loginButton.setText("Account");
@@ -160,6 +162,5 @@ public class baseController {
     private void goToMovie(int id){
         movieController.movieID = id;
         Main.setScene("/sample/fxml/movie.fxml","/sample/style/style.css");
-
     }
 }

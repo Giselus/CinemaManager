@@ -24,6 +24,7 @@ public class mainMenuController {
     //change scene
     public void switchToSceneLogiIn(){
         Main.setScene("/sample/fxml/logIn.fxml","/sample/style/styleLogIn.css");
+        //Main.setScene("/sample/fxml/reservation.fxml","/sample/style/styleReservation.css");
     }
     public void switchToSceneSignUp(){
         Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css");

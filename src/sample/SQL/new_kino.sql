@@ -1,5 +1,3 @@
-CREATE TYPE dzwiek_type AS ENUM ('oryginal', 'lektor', 'dubbing');
-CREATE TYPE plec AS ENUM ('kobieta', 'mezczyzna');
 
 CREATE  TABLE film ( 
 	id                   integer  NOT NULL ,
@@ -14,13 +12,16 @@ CREATE  TABLE film (
 CREATE  TABLE gatunek (
 	id                   integer  NOT NULL ,
 	rodzaj               varchar(20)  NOT NULL ,
-	CONSTRAINT pk_gatunek_id PRIMARY KEY ( id )
+	CONSTRAINT pk_gatunek_id PRIMARY KEY ( id ),
+	CONSTRAINT unq_gatunek_name UNIQUE ( rodzaj )
+
  );
 
 CREATE  TABLE jezyk (
 	id                   integer  NOT NULL ,
 	jezyk_oryginalu      varchar(20)  NOT NULL ,
-	CONSTRAINT pk_jezyk_id PRIMARY KEY ( id )
+	CONSTRAINT pk_jezyk_id PRIMARY KEY ( id ),
+	CONSTRAINT unq_jezyk UNIQUE ( jezyk_oryginalu )
  );
 
 CREATE  TABLE klient (
@@ -31,13 +32,14 @@ CREATE  TABLE klient (
 	login                varchar(15)  NOT NULL ,
 	haslo                varchar(15)   ,
 	CONSTRAINT pk_klient_id PRIMARY KEY ( id ),
-	CONSTRAINT unq_klient_login UNIQUE(login)
+	CONSTRAINT unq_login_name UNIQUE ( login )
  );
 
 CREATE  TABLE kraj (
 	id                   integer  NOT NULL ,
 	kraj                 varchar  NOT NULL ,
-	CONSTRAINT pk_kraj_id PRIMARY KEY ( id )
+	CONSTRAINT pk_kraj_id PRIMARY KEY ( id ),
+	CONSTRAINT unq_kraj_name UNIQUE ( kraj )
  );
 
 CREATE  TABLE osoby (
@@ -54,7 +56,8 @@ CREATE  TABLE osoby (
 CREATE  TABLE pozycja (
 	id                   integer  NOT NULL ,
 	nazwa                varchar(20)  NOT NULL ,
-	CONSTRAINT pk_pozycja_id PRIMARY KEY ( id )
+	CONSTRAINT pk_pozycja_id PRIMARY KEY ( id ),
+	CONSTRAINT unq_pozycja_name UNIQUE ( nazwa )
  );
 
 CREATE  TABLE produkcja (
@@ -90,7 +93,8 @@ CREATE  TABLE seans (
 CREATE  TABLE wytwornia (
 	id                   integer  NOT NULL ,
 	studio               varchar(30)  NOT NULL ,
-	CONSTRAINT pk_producent_id PRIMARY KEY ( id )
+	CONSTRAINT pk_producent_id PRIMARY KEY ( id ),
+	CONSTRAINT unq_studio_name UNIQUE ( studio )
  );
 
 CREATE  TABLE zamowienie (
@@ -106,18 +110,16 @@ CREATE  TABLE znizka (
 	id_znizki            integer  NOT NULL ,
 	rodzaj               varchar(20)  NOT NULL ,
 	procent_znizki       numeric(2)  NOT NULL ,
-	CONSTRAINT pk_znizka_id_znizki PRIMARY KEY ( id_znizki )
+	CONSTRAINT pk_znizka_id_znizki PRIMARY KEY ( id_znizki ),
+	CONSTRAINT unq_rodzaj_name UNIQUE ( rodzaj )
  );
 
 CREATE  TABLE bilet (
-	id_seansu            integer  NOT NULL ,
 	id_zamowienia        integer  NOT NULL ,
 	id_znizki            integer  NOT NULL ,
-	ilosc                integer  NOT NULL ,
 	numer_rzedu          integer  NOT NULL ,
 	numer_miejsca        integer  NOT NULL ,
 	CONSTRAINT fk_bilet_znizka FOREIGN KEY ( id_znizki ) REFERENCES znizka( id_znizki )   ,
-	CONSTRAINT fk_bilet_seans FOREIGN KEY ( id_seansu ) REFERENCES seans( id )   ,
 	CONSTRAINT fk_bilet_zamowienia FOREIGN KEY ( id_zamowienia ) REFERENCES zamowienie( id )
  );
 
@@ -132,28 +134,28 @@ CREATE  TABLE film_jezyk (
 	id_filmu             integer  NOT NULL ,
 	id_jezyk             integer  NOT NULL ,
 	CONSTRAINT fk_film_jezyk_film_jezyk FOREIGN KEY ( id_jezyk ) REFERENCES jezyk( id )   ,
-	CONSTRAINT fk_film_jezyk_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   
+	CONSTRAINT fk_film_jezyk_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )
  );
 
-CREATE  TABLE film_kraj ( 
+CREATE  TABLE film_kraj (
 	id_filmu             integer  NOT NULL ,
 	id_kraj              integer  NOT NULL ,
 	CONSTRAINT fk_film_kraj_kraj FOREIGN KEY ( id_kraj ) REFERENCES kraj( id )   ,
-	CONSTRAINT fk_film_kraj_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   
+	CONSTRAINT fk_film_kraj_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )
  );
 
-CREATE  TABLE film_wytwornia ( 
+CREATE  TABLE film_wytwornia (
 	id_filmu             integer  NOT NULL ,
 	id_wytwornia         integer  NOT NULL ,
 	CONSTRAINT fk_film_wytwornia_wytwornia FOREIGN KEY ( id_wytwornia ) REFERENCES wytwornia( id )   ,
-	CONSTRAINT fk_film_wytwornia_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   
+	CONSTRAINT fk_film_wytwornia_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )
  );
 
-CREATE  TABLE historia_ocen ( 
+CREATE  TABLE historia_ocen (
 	id_filmu             integer  NOT NULL ,
 	id_klienta           integer  NOT NULL ,
 	ocena                integer  NOT NULL ,
-	data_wystawienia     date  NOT NULL DEFAULT current_date,
+	data_wystawienia     date  NOT NULL ,
 	komentarz            varchar(250)  NOT NULL ,
 	CONSTRAINT fk_historia_ocen_klient FOREIGN KEY ( id_klienta ) REFERENCES klient( id )   ,
 	CONSTRAINT fk_historia_ocen_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   
