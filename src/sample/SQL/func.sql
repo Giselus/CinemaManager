@@ -119,14 +119,14 @@ $$ language plpgsql;
 
 CREATE OR REPLACE VIEW film_filtry AS SELECT f.*, score(id) as score FROM film f;
 
-CREATE OR REPLACE FUNCTION cena_biletu(_id_seansu int, _id_znizki int) RETURNS numeric AS $$
+CREATE OR REPLACE FUNCTION cena_biletu(_id_zamowienia int, _id_znizki int) RETURNS numeric AS $$
 DECLARE
     p numeric;
     f record;
     cena_bazowa numeric;
     procent numeric;
 BEGIN
-    cena_bazowa = (SELECT cena FROM seans WHERE id = _id_seansu);
+    cena_bazowa = (SELECT cena FROM zamowienie z JOIN seans s ON s.id = id_seansu WHERE z.id = _id_zamowienia);
     procent = (SELECT procent_znizki FROM znizka WHERE id_znizki = _id_znizki);
     p = cena_bazowa * (100-procent);
     RETURN p;
@@ -134,7 +134,7 @@ END;
 $$ language plpgsql;
 
 
-CREATE OR REPLACE VIEW bilet_cena AS SELECT b.*, cena_biletu(id_seansu, id_znizki) as cena FROM bilet b;
+CREATE OR REPLACE VIEW bilet_cena AS SELECT b.*, cena_biletu(id_zamowienia, id_znizki) as cena FROM bilet b;
 
 CREATE OR REPLACE FUNCTION cena_zamowienia(_id int) RETURNS numeric AS $$
 DECLARE
@@ -162,5 +162,17 @@ BEGIN
         id_pozycji = (SELECT id FROM pozycja WHERE nazwa = nazwa1);
     END IF;
     INSERT INTO produkcja VALUES(id1,id2,id_pozycji);
+END;
+$$ language plpgsql;
+
+CREATE OR REPLACE FUNCTION czysc_zamowienia() RETURNS void AS $$
+DECLARE
+    f record;
+BEGIN
+    FOR f IN (SELECT * FROM zamowienie z JOIN seans s ON s.id = id_seansu
+    WHERE data_rozpoczecia > current_date AND data_rozpoczecia <= current_date + interval '30 minute'
+    AND zrealizowane = false) LOOP
+        DELETE FROM zamowienie WHERE id = f.z.id;
+    END LOOP;
 END;
 $$ language plpgsql;

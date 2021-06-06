@@ -40,7 +40,7 @@
             </Text>
          </children>
       </StackPane>
-      <ScrollPane layoutY="150.0" prefHeight="570.0" prefWidth="1080.0">
+      <ScrollPane layoutY="150.0" prefHeight="570.0" prefWidth="1100.0">
          <content>
             <AnchorPane>
                <children>
