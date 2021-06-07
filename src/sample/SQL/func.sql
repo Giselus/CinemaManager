@@ -221,4 +221,5 @@ BEGIN
 END;
 $$ language plpgsql;
 
-CREATE OR REPLACE VIEW seans_miejsca as SELECT z.*, wolne_miejsca(z.id) FROM zamowienie z;
+DROP VIEW IF EXISTS seans_miejsca;
+CREATE OR REPLACE VIEW seans_miejsca as SELECT z.*, wolne_miejsca(z.id) as wolne_miejsca FROM zamowienie z;
