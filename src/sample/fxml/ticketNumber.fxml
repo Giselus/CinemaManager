@@ -35,4 +35,137 @@
             </Text>
         </children>
     </StackPane>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="371.0" layoutX="332.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="458.0" />
+   <Button layoutX="345.0" layoutY="295.0" mnemonicParsing="false" onAction="#addNormal" prefHeight="26.0" prefWidth="29.0" text="+" />
+   <Button layoutX="380.0" layoutY="295.0" mnemonicParsing="false" onAction="#subNormal" prefHeight="26.0" prefWidth="29.0" text="-" />
+   <Button layoutX="345.0" layoutY="340.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="26.0" prefWidth="29.0" text="+" />
+   <Button layoutX="380.0" layoutY="340.0" mnemonicParsing="false" onAction="#subStudent" prefHeight="26.0" prefWidth="29.0" text="-" />
+   <Text layoutX="421.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Normal">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text layoutX="421.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Button layoutX="345.0" layoutY="385.0" mnemonicParsing="false" onAction="#addRetired" prefHeight="26.0" prefWidth="29.0" text="+" />
+   <Button layoutX="380.0" layoutY="385.0" mnemonicParsing="false" onAction="#subRetired" prefHeight="26.0" prefWidth="29.0" text="-" />
+   <Text layoutX="421.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Retired">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Button layoutX="345.0" layoutY="430.0" mnemonicParsing="false" onAction="#addVeteran" prefHeight="26.0" prefWidth="29.0" text="+" />
+   <Button layoutX="380.0" layoutY="430.0" mnemonicParsing="false" onAction="#subVeteran" prefHeight="26.0" prefWidth="29.0" text="-" />
+   <Text layoutX="421.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veteran">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Button layoutX="345.0" layoutY="475.0" mnemonicParsing="false" onAction="#addWorker" prefHeight="26.0" prefWidth="29.0" text="+" />
+   <Button layoutX="382.0" layoutY="475.0" mnemonicParsing="false" onAction="#subWorker" prefHeight="26.0" prefWidth="29.0" text="-" />
+   <Text layoutX="421.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Worker">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text layoutX="500.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+   <Text fx:id="normalValue" layoutX="494.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="studentValue" layoutX="494.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="retiredValue" layoutX="494.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="veteranValue" layoutX="494.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="workerValue" layoutX="494.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="normalProcent" layoutX="610.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20%">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="studentProcent" layoutX="610.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20%">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="retiredProcent" layoutX="610.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20%">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="veteranProcent" layoutX="610.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20%">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="workerProcent" layoutX="610.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20%">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text layoutX="128.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticekt">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="actualTicektValue" layoutX="144.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" />
+   <Text layoutX="701.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
+      <font>
+         <Font size="25.0" />
+      </font>
+   </Text>
+   <Text fx:id="normalPrice" layoutX="722.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="studentPrice" layoutX="722.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="retiredPrice" layoutX="722.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="veteranPrice" layoutX="722.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text fx:id="workerPrice" layoutX="722.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Text layoutX="505.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price">
+      <font>
+         <Font size="25.0" />
+      </font>
+   </Text>
+   <Text fx:id="totalPrice" layoutX="556.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
 </AnchorPane>

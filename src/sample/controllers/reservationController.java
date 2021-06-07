@@ -147,11 +147,11 @@ public class reservationController {
                 } else {
                     table[i][j].setFill(Color.RED);
                 }
+                }
             }
+            System.out.println(counter);
+            sittPlaceId.setText(String.valueOf(counter));
         }
-        System.out.println(counter);
-        sittPlaceId.setText(String.valueOf(counter));
-    }
     @FXML public void useBuyButton(){
         isBuying = true;
         amountOfTickets = 10 - counter;
