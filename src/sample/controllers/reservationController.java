@@ -9,15 +9,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import sample.Main;
 import sample.QueryExecutor;
 
 import java.sql.ResultSet;
 
 public class reservationController {
 
+    @FXML public Button buyButton;
+    @FXML public Button reserveButton;
     int counter = 10;
     @FXML public Text sittPlaceId;
     @FXML public AnchorPane panePane;
+    public static boolean isBuying = true;
+    public static int amountOfTickets = 0;
     int number_of_rows = 8;
     int number_of_columns = 15;
     Rectangle[][] table;
@@ -42,9 +47,21 @@ public class reservationController {
                 taken_table[i][j] = 0;
             }
         }
+        query = "select b.numer_rzedu, b.numer_miejsca from bilet b join zamowienie z on b.id_zamowienia " +
+                "= z.id join seans s ON z.id_seansu = s.id WHERE s.id = "+repertoireController.seans+";";
+        try {
+            ResultSet resultSet= QueryExecutor.executeSelect(query);
+            while(resultSet.next()){
+                int x=resultSet.getInt(1);
+                int y=resultSet.getInt(2);
+                taken_table[x][y] = 2;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         int width = number_of_columns*50;
         int height = number_of_rows*50;
-        int startX = (1080 - width)/2;
+        int startX = (1280 - width)/2;
         int startY = (720 - height)/2;
         column_names = new Text[number_of_columns];
         for(int i=0; i<number_of_columns; i++){
@@ -125,12 +142,30 @@ public class reservationController {
             for(int j=0; j<number_of_columns; j++){
                 if(taken_table[i][j] == 1){
                     table[i][j].setFill(Color.ORANGE);
-                } else {
+                } else if(taken_table[i][j] == 0) {
                     table[i][j].setFill(Color.GREEN);
+                } else {
+                    table[i][j].setFill(Color.RED);
                 }
             }
         }
         System.out.println(counter);
         sittPlaceId.setText(String.valueOf(counter));
+    }
+    @FXML public void useBuyButton(){
+        isBuying = true;
+        amountOfTickets = 10 - counter;
+        if(amountOfTickets == 0){
+            return;
+        }
+        Main.setScene("/sample/fxml/ticketNumber.fxml", "/sample/style/styleReservation.css");
+    }
+    @FXML public void useReserveButton(){
+        isBuying = false;
+        amountOfTickets = 10-counter;
+        if(amountOfTickets == 0){
+            return;
+        }
+        Main.setScene("/sample/fxml/ticketNumber.fxml", "/sample/style/styleReservation.css");
     }
 }

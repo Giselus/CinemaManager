@@ -210,14 +210,17 @@ DECLARE
     sal record;
     iter record;
     zajete int;
+    rzedy int;
+    kolumnys int;
 BEGIN
     zajete = 0;
     FOR iter IN (SELECT * FROM bilet b JOIN zamowienie z ON b.id_zamowienia = z.id
-     JOIN seans ON z.id_seansu = s.id WHERE s.id = _id) LOOP
+     JOIN seans s ON z.id_seansu = s.id WHERE s.id = _id) LOOP
         zajete = zajete + 1;
      END LOOP;
-     sal = (SELECT * FROM seans s JOIN sala sa ON s.id_sala = sa.id WHERE s.id = _id);
-     RETURN sal.liczba_rzedow * sal.miejsca_w_rzedzie - zajete;
+     rzedy = (SELECT liczba_rzedow FROM seans s JOIN sala sa ON s.id_sala = sa.id WHERE s.id = _id LIMIT 1);
+     kolumnys = (SELECT miejsca_w_rzedzie FROM seans s JOIN sala sa ON s.id_sala = sa.id WHERE s.id = _id LIMIT 1);
+     RETURN rzedy * kolumnys - zajete;
 END;
 $$ language plpgsql;
 

@@ -161,11 +161,11 @@ INSERT INTO film_wytwornia VALUES
 INSERT INTO sala VALUES (1, 8, 15), (2, 6, 12);
 
 INSERT INTO seans VALUES
-    (1, 1,TIMESTAMP '2021-06-06 16:00:00', 1, false, 15, 'oryginal', true),
-    (2, 2,TIMESTAMP '2021-06-06 16:00:00', 2, false, 15, 'oryginal', true),
-    (3, 4,TIMESTAMP '2021-06-03 16:00:00', 1, false, 15, 'oryginal', true),
-    (4, 3,TIMESTAMP '2021-06-04 16:00:00', 2, false, 15, 'oryginal', true),
-    (5, 5,TIMESTAMP '2021-06-05 16:00:00', 1, false, 15, 'oryginal', true);
+    (1, 1,TIMESTAMP '2021-06-15 16:00:00', 1, false, 15, 'oryginal', true),
+    (2, 2,TIMESTAMP '2021-06-14 16:00:00', 2, false, 15, 'oryginal', true),
+    (3, 4,TIMESTAMP '2021-06-14 16:00:00', 1, false, 15, 'oryginal', true),
+    (4, 3,TIMESTAMP '2021-06-15 16:00:00', 2, false, 15, 'oryginal', true),
+    (5, 5,TIMESTAMP '2021-06-16 16:00:00', 1, false, 15, 'oryginal', true);
 
 
 INSERT INTO znizka VALUES
@@ -174,3 +174,20 @@ INSERT INTO znizka VALUES
 	(3, 'weterańska', 50),
 	(4, 'normalna', 0),
 	(5, 'pracownicza', 90);
+
+INSERT INTO zamowienie VALUES
+	(1, 1, TIMESTAMP '2021-06-06 15:00:00', true),
+	(2, 1, TIMESTAMP '2021-06-06 14:00:00', true),
+	(3, 1, TIMESTAMP '2021-06-06 13:00:00', true);
+
+INSERT INTO bilet VALUES
+	(1, 4, 1, 1),
+	(1, 4, 1, 2),
+	(1, 4, 1, 3),
+	(1, 4, 1, 4),
+	(2, 4, 2, 2),
+	(2, 4, 2, 3),
+	(2, 4, 2, 4),
+	(2, 4, 2, 5),
+	(3, 4, 3, 7),
+	(3, 4, 3, 8);
