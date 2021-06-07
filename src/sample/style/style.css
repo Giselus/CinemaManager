@@ -1,6 +1,9 @@
 #container{
     -fx-background-color:#000;
 }
+#movieBox{
+    -fx-background-color:#000;
+}
 .button{
     -fx-background-color:#f5821e;
     -fx-cursor:hand;
@@ -22,4 +25,13 @@
 #logo{
     -fx-font-weight: bold;
     -fx-font-size: 25px;
+}
+#test{
+    -fx-background-color:red;
+    -fx-height:10px;
+    -fx-pref-width:70px;
+    -fx-font-size: 15px;
+}
+#rectangleId{
+    -fx-background-color:red;
 }

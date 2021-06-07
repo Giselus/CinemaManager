@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -140,7 +141,9 @@ public class baseController {
                 Rectangle rectangle = new Rectangle();
                 rectangle.setWidth(1280);
                 rectangle.setHeight(200);
+                rectangle.setId("rectangleId");
                 rectangle.setFill(Paint.valueOf("DODGERBLUE"));
+                Region region= new Region();
                 Text titleText = new Text();
                 titleText.setLayoutX(50);
                 titleText.setLayoutY(20);
@@ -150,20 +153,28 @@ public class baseController {
                 scoreText.setText(String.valueOf(score));
                 Button button = new Button();
                 button.setOnAction(e -> goToMovie(id));
+                button.setId("test");
+                button.setText("Info");
+                button.setLayoutX(585);
+                button.setLayoutY(155);
+                Button button2=new Button();
+                button2.setOnAction(e -> goToMovie(id));
+                button2.setId("test");
+                button2.setText("Seanse");
+                button2.setLayoutX(670);
+                button2.setLayoutY(155);
                 moviePane.getChildren().add(rectangle);
                 moviePane.getChildren().add(titleText);
                 moviePane.getChildren().add(scoreText);
                 moviePane.getChildren().add(button);
+                moviePane.getChildren().add(button2);
                 movieBox.getChildren().add(moviePane);
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-
         // pages
-
     }
-
     private void goToMovie(int id){
         movieController.movieID = id;
         Main.setScene("/sample/fxml/movie.fxml","/sample/style/style.css");
