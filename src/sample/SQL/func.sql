@@ -222,4 +222,14 @@ END;
 $$ language plpgsql;
 
 DROP VIEW IF EXISTS seans_miejsca;
-CREATE OR REPLACE VIEW seans_miejsca as SELECT z.*, wolne_miejsca(z.id) as wolne_miejsca FROM zamowienie z;
+CREATE OR REPLACE VIEW seans_miejsca as SELECT z.*, wolne_miejsca(z.id) as wolne_miejsca FROM seans z;
+
+DROP VIEW IF EXISTS film_komentarze;
+CREATE OR REPLACE VIEW film_komentarze AS (SELECT f.id,h.ocena, h.komentarz, h.data_wystawienia, k.imie, k.nazwisko
+FROM film f JOIN historia_ocen h ON f.id = id_filmu
+ JOIN klient k ON k.id = id_klienta ORDER BY data_wystawienia);
+
+DROP VIEW IF EXISTS role_osoby;
+CREATE OR REPLACE VIEW role_osoby AS (SELECT o.id,p.nazwa,f.id as id_filmu, f.tytul, f.data_premiery
+FROM produkcja JOIN osoby o ON id_osoba = o.id JOIN
+pozycja p ON p.id = id_pozycja JOIN film f ON f.id = id_filmu);

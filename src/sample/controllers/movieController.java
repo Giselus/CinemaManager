@@ -110,6 +110,18 @@ public class movieController {
                 castPane.getChildren().add(positonText);
                 nameText.setLayoutY(20);
                 positonText.setLayoutY(35);
+                nameText.setLayoutX(40);
+                positonText.setLayoutX(40);
+                Button button = new Button();
+                button.setOnAction(e -> {
+                    personController.personID = id_osoby;
+                    Main.setScene("/sample/fxml/person.fxml","/sample/style/style.css");
+                });
+                button.setLayoutY(0);
+                button.setPrefSize(10,10);
+                button.setMaxSize(10,10);
+                button.setText("");
+                castPane.getChildren().add(button);
                 movieCast.getChildren().add(castPane);
             }
         }catch(Exception e){
@@ -155,7 +167,7 @@ public class movieController {
 
     private void refreshComments(){
         try{
-            String noOfCommentsQuery = String.format("SELECT COUNT(*) FROM historia_ocen WHERE id_filmu = %d;",movieID);
+            String noOfCommentsQuery = String.format("SELECT COUNT(*) FROM film_komentarze WHERE id = %d;",movieID);
             ResultSet noOfCommentsResult = QueryExecutor.executeSelect(noOfCommentsQuery);
             if(noOfCommentsResult.next()){
                 commentsPageText.setText(String.format("Comments page(1-%d):",(noOfCommentsResult.getInt(1)-1)/10 +1));
@@ -163,8 +175,9 @@ public class movieController {
 
             commentsPageField.setText(String.valueOf(commentsPage));
 
-            String commentsQuery = String.format("SELECT * FROM historia_ocen " +
-                    "WHERE id_filmu = %d ORDER BY data_wystawienia DESC LIMIT 10 OFFSET %d;",movieID, (commentsPage-1)*10);
+            String commentsQuery = String.format("SELECT * FROM film_komentarze WHERE id = %d;",movieID);
+            //String commentsQuery = String.format("SELECT * FROM historia_ocen " +
+              //      "WHERE id_filmu = %d ORDER BY data_wystawienia DESC LIMIT 10 OFFSET %d;",movieID, (commentsPage-1)*10);
             ResultSet comments = QueryExecutor.executeSelect(commentsQuery);
             commentsBox.getChildren().clear();
             while(comments.next()){

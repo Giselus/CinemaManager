@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.personController">
+    <children>
+        <StackPane prefHeight="150.0" prefWidth="1280.0">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
+                    <children>
+                        <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
+                        <Button fx:id="repertoireButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repertoire" />
+                        <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Log in/account" />
+                        <Button fx:id="signupButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="sign up/log out" />
+                    </children>
+                    <padding>
+                        <Insets right="10.0" />
+                    </padding>
+                </HBox>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema name" StackPane.alignment="CENTER_LEFT">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                    <StackPane.margin>
+                        <Insets left="10.0" />
+                    </StackPane.margin>
+                </Text>
+                <Button mnemonicParsing="false" onAction="#backToPreviousPage" text="Back" StackPane.alignment="BOTTOM_RIGHT">
+                    <StackPane.margin>
+                        <Insets right="10.0" />
+                    </StackPane.margin>
+                </Button>
+            </children>
+        </StackPane>
+        <ScrollPane layoutY="150.0" prefHeight="570.0" prefWidth="1280.0">
+         <content>
+            <VBox spacing="20.0">
+               <children>
+                  <VBox prefWidth="1280.0">
+                     <children>
+                        <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sexText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="birthText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="countryText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <HBox prefWidth="1280.0" spacing="10.0">
+                           <children>
+                              <Text fx:id="pageText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="pageField" maxWidth="100.0" prefWidth="100.0" text="1" />
+                              <Button mnemonicParsing="false" onAction="#apply" text="Apply" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                      <VBox fx:id="roleBox" prefWidth="1280.0" spacing="10.0" />
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </VBox>
+         </content>
+        </ScrollPane>
+    </children>
+
+</AnchorPane>

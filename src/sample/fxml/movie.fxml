@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.movieController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.movieController">
     <children>
-        <StackPane prefHeight="150.0" prefWidth="1080.0">
+        <StackPane prefHeight="150.0" prefWidth="1280.0">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1080.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
                     <children>
                         <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
@@ -45,11 +45,11 @@
             </Button>
             </children>
         </StackPane>
-      <ScrollPane layoutY="150.0" prefHeight="570.0" prefWidth="1100.0">
+      <ScrollPane layoutY="150.0" prefHeight="570.0" prefWidth="1280.0">
          <content>
-            <VBox prefHeight="200.0" prefWidth="1080.0">
+            <VBox prefHeight="200.0" prefWidth="1280.0">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="1080.0">
+                  <AnchorPane prefHeight="200.0" prefWidth="1280.0">
                      <children>
                         <Text fx:id="titleText" layoutX="400.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
@@ -67,7 +67,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="commentArea" layoutX="200.0" prefHeight="200.0" prefWidth="600.0" wrapText="true" />
+                        <TextArea fx:id="commentArea" layoutX="200.0" prefHeight="200.0" prefWidth="800.0" wrapText="true" />
                         <Text layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write your comment">
                            <font>
                               <Font size="20.0" />
@@ -83,7 +83,7 @@
                               <Font size="20.0" />
                            </font>
                         </TextField>
-                        <Button layoutX="815.0" layoutY="30.0" mnemonicParsing="false" onAction="#publishComment" text="Publish comment" />
+                        <Button layoutX="1015.0" layoutY="30.0" mnemonicParsing="false" onAction="#publishComment" text="Publish comment" />
                      </children>
                   </AnchorPane>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -97,7 +97,7 @@
                         <Button mnemonicParsing="false" onAction="#applyCommentsFilter" text="Apply" />
                      </children>
                   </HBox>
-                  <VBox fx:id="commentsBox" alignment="CENTER" prefHeight="200.0" prefWidth="1080.0" spacing="30.0">
+                  <VBox fx:id="commentsBox" alignment="CENTER" prefHeight="200.0" prefWidth="1280.0" spacing="30.0">
                      <padding>
                         <Insets top="30.0" />
                      </padding>

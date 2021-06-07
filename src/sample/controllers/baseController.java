@@ -138,7 +138,7 @@ public class baseController {
                 //Todo: just generate movies and so
                 AnchorPane moviePane = new AnchorPane();
                 Rectangle rectangle = new Rectangle();
-                rectangle.setWidth(1080);
+                rectangle.setWidth(1280);
                 rectangle.setHeight(200);
                 rectangle.setFill(Paint.valueOf("DODGERBLUE"));
                 Text titleText = new Text();
