@@ -48,7 +48,7 @@ public class baseController {
             signupButton.setOnAction((e) -> Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css"));
             testCode.setOnAction((e) -> Main.setScene("/sample/fxml/reservation.fxml","/sample/style/styleReservation.css"));
         }else{
-            //TODO: set Buttons actions
+
             loginButton.setText("Account");
             loginButton.setOnAction(e -> Main.setScene("/sample/fxml/account.fxml","/sample/style/style.css"));
             signupButton.setText("Log out");
@@ -57,6 +57,11 @@ public class baseController {
                 refreshLook();
             });
         }
+    }
+
+    @FXML
+    private void backToPreviousPage(){
+        Main.setLastScene();
     }
 
     private enum FilterType{

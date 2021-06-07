@@ -176,3 +176,49 @@ BEGIN
     END LOOP;
 END;
 $$ language plpgsql;
+
+CREATE OR REPLACE FUNCTION historia_data_check() RETURNS TRIGGER AS $$
+BEGIN
+    IF OLD IS NULL THEN
+        NEW.data_wystawienia = current_date;
+        RETURN NEW;
+    END IF;
+   NEW.data_wystawienia = OLD.data_wystawienia;
+   RETURN NEW;
+END;
+$$ language plpgsql;
+
+DROP TRIGGER IF EXISTS historia_data_check ON historia_ocen;
+CREATE TRIGGER historia_data_check BEFORE INSERT OR UPDATE ON historia_ocen FOR EACH ROW EXECUTE PROCEDURE historia_data_check();
+
+CREATE OR REPLACE FUNCTION zamowienie_data_check() RETURNS TRIGGER AS $$
+BEGIN
+    IF OLD IS NULL THEN
+        NEW.data_zamowienia = current_date;
+        RETURN NEW;
+    END IF;
+    NEW.data_zamowienia = OLD.data_zamowienia;
+    RETURN NEW;
+END;
+$$ language plpgsql;
+
+DROP TRIGGER IF EXISTS zamowienie_data_check ON zamowienie;
+CREATE TRIGGER zamowienie_data_check BEFORE INSERT OR UPDATE ON zamowienie FOR EACH ROW EXECUTE PROCEDURE zamowienie_data_check();
+
+CREATE OR REPLACE FUNCTION wolne_miejsca(_id int) RETURNS int AS $$
+DECLARE
+    sal record;
+    iter record;
+    zajete int;
+BEGIN
+    zajete = 0;
+    FOR iter IN (SELECT * FROM bilet b JOIN zamowienie z ON b.id_zamowienia = z.id
+     JOIN seans ON z.id_seansu = s.id WHERE s.id = _id) LOOP
+        zajete = zajete + 1;
+     END LOOP;
+     sal = (SELECT * FROM seans s JOIN sala sa ON s.id_sala = sa.id WHERE s.id = _id);
+     RETURN sal.liczba_rzedow * sal.miejsca_w_rzedzie - zajete;
+END;
+$$ language plpgsql;
+
+CREATE OR REPLACE VIEW seans_miejsca as SELECT z.*, wolne_miejsca(z.id) FROM zamowienie z;

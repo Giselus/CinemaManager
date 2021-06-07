@@ -44,7 +44,6 @@ public class movieController {
             signupButton.setText("Sign up");
             signupButton.setOnAction((e) -> Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css"));
         }else{
-            //TODO: set Buttons actions
             loginButton.setText("Account");
             loginButton.setOnAction(e -> Main.setScene("/sample/fxml/account.fxml","/sample/style/style.css"));
             signupButton.setText("Log out");
@@ -53,6 +52,11 @@ public class movieController {
                 refreshLook();
             });
         }
+    }
+
+    @FXML
+    private void backToPreviousPage(){
+        Main.setLastScene();
     }
 
     public static int movieID;

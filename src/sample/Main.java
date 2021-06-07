@@ -23,7 +23,8 @@ public class Main extends Application {
     public static int ID;
     public static boolean logged = false;
     public static void setScene(String tmp,String styleCss){
-        previousScenes.add(new Pair<>(currentScene,currentStyle));
+        if(currentScene != null)
+            previousScenes.add(new Pair<>(currentScene,currentStyle));
         currentScene = tmp;
         currentStyle = styleCss;
         try {
@@ -82,7 +83,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        initializeDatabase();
+        //initializeDatabase();
         initializeFunctions();
 
         primaryStage.setResizable(false);
