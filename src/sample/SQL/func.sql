@@ -1,5 +1,5 @@
 DROP SEQUENCE IF EXISTS idSeq CASCADE;
-CREATE SEQUENCE idSeq start 1;
+CREATE SEQUENCE idSeq start 10000;
 
 CREATE OR REPLACE FUNCTION klient_ins() RETURNS TRIGGER AS $$
 BEGIN
@@ -179,7 +179,7 @@ $$ language plpgsql;
 
 CREATE OR REPLACE FUNCTION historia_data_check() RETURNS TRIGGER AS $$
 BEGIN
-    IF OLD IS NULL THEN
+    IF OLD = NULL THEN
         NEW.data_wystawienia = current_date;
         RETURN NEW;
     END IF;
@@ -193,11 +193,11 @@ CREATE TRIGGER historia_data_check BEFORE INSERT OR UPDATE ON historia_ocen FOR 
 
 CREATE OR REPLACE FUNCTION zamowienie_data_check() RETURNS TRIGGER AS $$
 BEGIN
-    IF OLD IS NULL THEN
-        NEW.data_zamowienia = current_date;
+    IF OLD != NULL THEN
+        NEW.data_zamowienia = OLD.data_zamowienia;
         RETURN NEW;
     END IF;
-    NEW.data_zamowienia = OLD.data_zamowienia;
+    NEW.data_zamowienia = current_date;
     RETURN NEW;
 END;
 $$ language plpgsql;

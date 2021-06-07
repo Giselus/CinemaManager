@@ -5,13 +5,15 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import sample.Main;
 import sample.QueryExecutor;
 
 import java.sql.ResultSet;
 
 public class ticketNumberController {
 
-    int manyTicket;
+    @FXML public Button confirmButton;
+    int manyTicket = 0;
     int filmPrice=0;
     @FXML
     public AnchorPane myPane;
@@ -220,17 +222,37 @@ public class ticketNumberController {
         retiredPrice.setText(String.valueOf((int)retiredTotalPrice));
         totalPrice.setText(String.valueOf(sumPrice()));
     }
-//    public void addText(Text text,String name, int value, int pos){
-//        text.setText(name);
-//        text.setX(400);
-//        text.setY(300+30*pos);
-//        text.setFont(Font.font("Arial", 20));
-//        Text tmp = new Text();
-//        tmp.setX(600);
-//        tmp.setY(300+30*pos);
-//        tmp.setFont(Font.font("Arial", 20));
-//        tmp.setText(value + "%");
-//        myPane.getChildren().add(text);
-//        myPane.getChildren().add(tmp);
-//    }
+    @FXML public void addTickets(){
+        if(manyTicket > 0){
+            //TODO information about bad input
+            return;
+        }
+        int seanceId = repertoireController.seans;
+        int id_order = 0;
+        String query = "INSERT INTO zamowienie VALUES(null, "+seanceId+", current_date, "+reservationController.isBuying+");";
+        try {
+            QueryExecutor.executeQuery(query);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        query = "SELECT id from zamowienie ORDER BY id DESC LIMIT 1;";
+        try {
+            ResultSet resultSet = QueryExecutor.executeSelect(query);
+            while(resultSet.next()){
+                id_order = resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        for(int i=0; i<reservationController.amountOfTickets; i++){
+            query = "INSERT INTO bilet VALUES("+id_order+", 4, " + reservationController.rows.get(i) +", "
+                    + reservationController.columns.get(i) + ");";
+            try {
+                QueryExecutor.executeQuery(query);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        Main.setScene("/sample/fxml/base.fxml", "/sample/style/style.css");
+    }
 }

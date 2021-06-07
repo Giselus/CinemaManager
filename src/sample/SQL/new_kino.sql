@@ -98,7 +98,7 @@ CREATE  TABLE wytwornia (
 CREATE  TABLE zamowienie ( 
 	id                   integer  NOT NULL ,
 	id_seansu            integer NOT NULL,
-	data_zamowienia      timestamp  NOT NULL ,
+	data_zamowienia      timestamp  NOT NULL default current_date,
 	zrealizowane         boolean  NOT NULL ,
 	id_klient            integer   ,
 	CONSTRAINT unq_zamowienia_id UNIQUE ( id ) ,

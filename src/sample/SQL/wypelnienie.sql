@@ -158,14 +158,20 @@ INSERT INTO film_wytwornia VALUES
 	(19, 4),
 	(20, 3);
 
-INSERT INTO sala VALUES (1, 8, 15), (2, 6, 12);
+INSERT INTO sala VALUES (1, 8, 15), (2, 6, 12), (3, 10, 19);
 
 INSERT INTO seans VALUES
     (1, 1,TIMESTAMP '2021-06-15 16:00:00', 1, false, 15, 'oryginal', true),
     (2, 2,TIMESTAMP '2021-06-14 16:00:00', 2, false, 15, 'oryginal', true),
-    (3, 4,TIMESTAMP '2021-06-14 16:00:00', 1, false, 15, 'oryginal', true),
+    (3, 4,TIMESTAMP '2021-06-14 16:00:00', 1, false, 15, 'dubbing', true),
     (4, 3,TIMESTAMP '2021-06-15 16:00:00', 2, false, 15, 'oryginal', true),
-    (5, 5,TIMESTAMP '2021-06-16 16:00:00', 1, false, 15, 'oryginal', true);
+    (5, 5,TIMESTAMP '2021-06-17 16:00:00', 3, false, 20, 'oryginal', true),
+    (6, 1,TIMESTAMP '2021-06-07 18:00:00', 2, false, 17, 'oryginal', true),
+    (7, 2,TIMESTAMP '2021-06-08 14:00:00', 1, false, 18, 'lektor', true),
+    (8, 3,TIMESTAMP '2021-06-09 17:00:00', 2, false, 15, 'dubbing', true),
+    (9, 3,TIMESTAMP '2021-06-08 20:00:00', 1, false, 10, 'oryginal', true),
+    (10, 6,TIMESTAMP '2021-06-09 12:00:00', 3, false, 15, 'oryginal', true),
+    (11, 5,TIMESTAMP '2021-06-09 16:00:00', 1, false, 12, 'lektor', true);
 
 
 INSERT INTO znizka VALUES

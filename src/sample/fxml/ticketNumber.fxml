@@ -10,31 +10,31 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="myPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ticketNumberController">
-    <StackPane prefHeight="150.0" prefWidth="1080.0">
-        <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1080.0" />
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
-                <children>
-                    <Button fx:id="testCode" mnemonicParsing="false" text="test" />
-                    <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
-                    <Button fx:id="repertoireButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repertoire" />
-                    <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Log in/account" />
-                    <Button fx:id="signupButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="sign up/log out" />
-                </children>
-                <padding>
-                    <Insets right="10.0" />
-                </padding>
-            </HBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema name" StackPane.alignment="CENTER_LEFT">
-                <font>
-                    <Font size="28.0" />
-                </font>
-                <StackPane.margin>
-                    <Insets left="10.0" />
-                </StackPane.margin>
-            </Text>
-        </children>
-    </StackPane>
+   <StackPane prefHeight="150.0" prefWidth="1080.0">
+      <children>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1080.0" />
+         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
+            <children>
+               <Button fx:id="testCode" mnemonicParsing="false" text="test" />
+               <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
+               <Button fx:id="repertoireButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repertoire" />
+               <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Log in/account" />
+               <Button fx:id="signupButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="sign up/log out" />
+            </children>
+            <padding>
+               <Insets right="10.0" />
+            </padding>
+         </HBox>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema name" StackPane.alignment="CENTER_LEFT">
+            <font>
+               <Font size="28.0" />
+            </font>
+            <StackPane.margin>
+               <Insets left="10.0" />
+            </StackPane.margin>
+         </Text>
+      </children>
+   </StackPane>
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="371.0" layoutX="332.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="458.0" />
    <Button layoutX="345.0" layoutY="295.0" mnemonicParsing="false" onAction="#addNormal" prefHeight="26.0" prefWidth="29.0" text="+" />
    <Button layoutX="380.0" layoutY="295.0" mnemonicParsing="false" onAction="#subNormal" prefHeight="26.0" prefWidth="29.0" text="-" />
@@ -168,4 +168,5 @@
          <Font size="18.0" />
       </font>
    </Text>
+   <Button fx:id="confirmButton" onAction="#addTickets" layoutX="890.0" layoutY="582.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="Confirm" />
 </AnchorPane>

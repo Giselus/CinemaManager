@@ -13,16 +13,20 @@ import sample.Main;
 import sample.QueryExecutor;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class reservationController {
 
     @FXML public Button buyButton;
     @FXML public Button reserveButton;
-    int counter = 10;
-    @FXML public Text sittPlaceId;
     @FXML public AnchorPane panePane;
+    int counter = 10;
+    int start_counter=10;
     public static boolean isBuying = true;
     public static int amountOfTickets = 0;
+    public static ArrayList<Integer> rows;
+    public static ArrayList<Integer> columns;
     int number_of_rows = 8;
     int number_of_columns = 15;
     Rectangle[][] table;
@@ -30,7 +34,18 @@ public class reservationController {
     Text[] column_names;
     Text[] row_names;
     public void initialize(){
-        String query="SELECT * from sala WHERE id="+repertoireController.sala+";";
+        String query = "SELECT wolne_miejsca("+repertoireController.seans+");";
+        try{
+            ResultSet resultSet=QueryExecutor.executeSelect(query);
+            while(resultSet.next()){
+                start_counter = resultSet.getInt(1);
+            }
+            start_counter = Math.min(start_counter, 10);
+            counter = start_counter;
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+        }
+        query="SELECT * from sala WHERE id="+repertoireController.sala+";";
         try {
             ResultSet resultSet= QueryExecutor.executeSelect(query);
             while(resultSet.next()){
@@ -147,25 +162,37 @@ public class reservationController {
                 } else {
                     table[i][j].setFill(Color.RED);
                 }
-                }
             }
-            System.out.println(counter);
-            sittPlaceId.setText(String.valueOf(counter));
         }
+    }
     @FXML public void useBuyButton(){
         isBuying = true;
-        amountOfTickets = 10 - counter;
+        amountOfTickets = start_counter - counter;
         if(amountOfTickets == 0){
             return;
         }
+        addSeats();
         Main.setScene("/sample/fxml/ticketNumber.fxml", "/sample/style/styleReservation.css");
     }
     @FXML public void useReserveButton(){
         isBuying = false;
-        amountOfTickets = 10-counter;
+        amountOfTickets = start_counter-counter;
         if(amountOfTickets == 0){
             return;
         }
+        addSeats();
         Main.setScene("/sample/fxml/ticketNumber.fxml", "/sample/style/styleReservation.css");
+    }
+    public void addSeats(){
+        rows = new ArrayList<>();
+        columns = new ArrayList<>();
+        for(int i=0; i<number_of_rows; i++){
+            for(int j=0; j<number_of_columns; j++){
+                if(taken_table[i][j] == 1){
+                    rows.add(i);
+                    columns.add(j);
+                }
+            }
+        }
     }
 }
