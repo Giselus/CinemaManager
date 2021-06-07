@@ -18,18 +18,6 @@
       <StackPane prefHeight="150.0" prefWidth="1280.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
-               <children>
-                  <Button fx:id="testCode" mnemonicParsing="false" text="test" />
-                  <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
-                  <Button fx:id="repertoireButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repertoire" />
-                  <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Log in/account" />
-                  <Button fx:id="signupButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="sign up/log out" />
-               </children>
-               <padding>
-                  <Insets right="10.0" />
-               </padding>
-            </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema name" StackPane.alignment="CENTER_LEFT">
                <font>
                   <Font size="28.0" />
@@ -38,11 +26,18 @@
                   <Insets left="10.0" />
                </StackPane.margin>
             </Text>
-            <Button mnemonicParsing="false" onAction="#backToPreviousPage" text="Back" StackPane.alignment="BOTTOM_RIGHT">
-               <StackPane.margin>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
+               <children>
+                  <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
+                  <Button fx:id="repertoireButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repertoire" />
+                  <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Log in/account" />
+                  <Button fx:id="signupButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="sign up/log out" />
+                  <Button mnemonicParsing="false" onAction="#backToPreviousPage" prefHeight="50.0" prefWidth="150.0" text="Back" />
+               </children>
+               <padding>
                   <Insets right="10.0" />
-               </StackPane.margin>
-            </Button>
+               </padding>
+            </HBox>
          </children>
       </StackPane>
       <ScrollPane layoutY="150.0" prefHeight="570.0" prefWidth="1280.0">

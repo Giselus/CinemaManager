@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import sample.Main;
 import sample.QueryExecutor;
@@ -47,7 +48,7 @@ public class baseController {
             loginButton.setOnAction((e) -> Main.setScene("/sample/fxml/logIn.fxml","/sample/style/styleLogIn.css"));
             signupButton.setText("Sign up");
             signupButton.setOnAction((e) -> Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css"));
-            testCode.setOnAction((e) -> Main.setScene("/sample/fxml/reservation.fxml","/sample/style/styleReservation.css"));
+            //testCode.setOnAction((e) -> Main.setScene("/sample/fxml/reservation.fxml","/sample/style/styleReservation.css"));
         }else{
 
             loginButton.setText("Account");
@@ -142,32 +143,43 @@ public class baseController {
                 rectangle.setWidth(1280);
                 rectangle.setHeight(200);
                 rectangle.setId("rectangleId");
-                rectangle.setFill(Paint.valueOf("DODGERBLUE"));
-                Region region= new Region();
+                rectangle.setFill(Paint.valueOf("#c8cccb"));
                 Text titleText = new Text();
-                titleText.setLayoutX(50);
-                titleText.setLayoutY(20);
-                Text scoreText = new Text();
-                scoreText.setLayoutY(60);
+                titleText.setFont(Font.font("Arial", 30));
                 titleText.setText(title);
+                double text_width = titleText.getLayoutBounds().getWidth();
+                titleText.setLayoutX((1280 - text_width) / 2);
+                titleText.setLayoutY(40);
+
+                Text marks=new Text();
+                marks.setLayoutY(50);
+                marks.setLayoutX(1150);
+                marks.setText("Marks");
+                Text scoreText = new Text();
+                scoreText.setLayoutY(80);
+                scoreText.setLayoutX(1160);
+
                 scoreText.setText(String.valueOf(score));
                 Button button = new Button();
                 button.setOnAction(e -> goToMovie(id));
                 button.setId("test");
                 button.setText("Info");
-                button.setLayoutX(585);
+                button.setLayoutX(565);
                 button.setLayoutY(155);
                 Button button2=new Button();
                 button2.setOnAction(e -> goToMovie(id));
                 button2.setId("test");
                 button2.setText("Seanse");
-                button2.setLayoutX(670);
+                button2.setLayoutX(650);
                 button2.setLayoutY(155);
+
                 moviePane.getChildren().add(rectangle);
                 moviePane.getChildren().add(titleText);
                 moviePane.getChildren().add(scoreText);
+                moviePane.getChildren().add(marks);
                 moviePane.getChildren().add(button);
                 moviePane.getChildren().add(button2);
+
                 movieBox.getChildren().add(moviePane);
             }
         }catch(Exception e){
@@ -178,5 +190,10 @@ public class baseController {
     private void goToMovie(int id){
         movieController.movieID = id;
         Main.setScene("/sample/fxml/movie.fxml","/sample/style/style.css");
+    }
+    private void goToRepertoire(String name){
+        repertoireController.fromBase = true;
+        repertoireController.movie_name = name;
+        Main.setScene("/sample/fxml/repertoire.fxml","/sample/style/style.css");
     }
 }

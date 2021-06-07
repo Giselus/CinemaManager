@@ -3,6 +3,7 @@
 }
 #movieBox{
     -fx-background-color:#000;
+    -fx-font-size: 20pt ;
 }
 .button{
     -fx-background-color:#f5821e;
@@ -10,9 +11,10 @@
     -fx-border-color: black;
     -fx-font-weight: bold;
     -fx-font-size: 18px;
-    -fx-font-style:"Verdana";
+    -fx-font-family:"Futura";
     -fx-text-fill: #000;
     -fx-border-radius:10px;
+    -fx-background-radius:10px;
 }
 .button:hover{
     -fx-text-fill: #fff;
@@ -27,7 +29,7 @@
     -fx-font-size: 25px;
 }
 #test{
-    -fx-background-color:red;
+    -fx-background-color:#c8cccb;
     -fx-height:10px;
     -fx-pref-width:70px;
     -fx-font-size: 15px;
