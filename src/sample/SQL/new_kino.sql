@@ -12,8 +12,7 @@ CREATE  TABLE gatunek (
 	id                   integer  NOT NULL ,
 	rodzaj               varchar(20)  NOT NULL ,
 	CONSTRAINT pk_gatunek_id PRIMARY KEY ( id ),
-	CONSTRAINT unq_gatunek_name UNIQUE ( rodzaj ) 
-
+	CONSTRAINT unq_gatunek_name UNIQUE ( rodzaj )
  );
 
 CREATE  TABLE jezyk ( 
@@ -98,11 +97,13 @@ CREATE  TABLE wytwornia (
 
 CREATE  TABLE zamowienie ( 
 	id                   integer  NOT NULL ,
+	id_seansu            integer NOT NULL,
 	data_zamowienia      timestamp  NOT NULL ,
 	zrealizowane         boolean  NOT NULL ,
 	id_klient            integer   ,
 	CONSTRAINT unq_zamowienia_id UNIQUE ( id ) ,
-	CONSTRAINT fk_zamowienie_klient FOREIGN KEY ( id_klient ) REFERENCES klient( id )   
+	CONSTRAINT fk_zamowienie_klient FOREIGN KEY ( id_klient ) REFERENCES klient( id )  ,
+	CONSTRAINT fk_id_seansu FOREIGN KEY ( id_seansu ) REFERENCES seans( id )
  );
 
 CREATE  TABLE znizka ( 
