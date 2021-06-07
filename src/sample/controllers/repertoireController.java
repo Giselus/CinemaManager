@@ -24,6 +24,8 @@ public class repertoireController {
     @FXML public VBox movieBox;
     @FXML public AnchorPane myPane;
     @FXML public ChoiceBox<String> filterChoice;
+    public static String movie_name = "";
+    public static boolean fromBase = false;
     public static int sala=0;
     public static int cena = 0;
     public static int seans = 0;
@@ -31,9 +33,7 @@ public class repertoireController {
 
     public void initialize() {
         callendar.setValue(LocalDate.now());
-        String query = "SELECT * FROM seans JOIN film ON seans.id_filmu = film.id" +
-                " WHERE data_rozpoczecia > current_date ORDER BY data_rozpoczecia;";
-        setUpView(query);
+        String query;
         query = "SELECT DISTINCT(f.tytul) FROM film f join seans s ON s.id_filmu = f.id" +
                 " WHERE data_rozpoczecia > current_date";
         filterChoice.getItems().add("All");
@@ -47,6 +47,15 @@ public class repertoireController {
             e.printStackTrace();
         }
         filterChoice.setValue("All");
+        if(!fromBase) {
+            query = "SELECT * FROM seans JOIN film ON seans.id_filmu = film.id" +
+                    " WHERE data_rozpoczecia > current_date ORDER BY data_rozpoczecia;";
+            setUpView(query);
+        } else {
+            fromBase = false;
+            filterChoice.setValue(movie_name);
+            setUpView(createQueryFromChoiceBox(filterChoice));
+        }
     }
     @FXML public void applyFilter(){
         setUpView(createQueryFromChoiceBox(filterChoice));

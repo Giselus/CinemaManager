@@ -1,6 +1,7 @@
 package sample.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
@@ -9,6 +10,7 @@ import sample.Main;
 import sample.QueryExecutor;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ticketNumberController {
 
@@ -224,12 +226,19 @@ public class ticketNumberController {
     }
     @FXML public void addTickets(){
         if(manyTicket > 0){
-            //TODO information about bad input
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setHeaderText("Something went wrong!");
+            a.setContentText("You haven't chosen all tickets.");
+            a.show();
             return;
         }
         int seanceId = repertoireController.seans;
         int id_order = 0;
-        String query = "INSERT INTO zamowienie VALUES(null, "+seanceId+", current_date, "+reservationController.isBuying+");";
+        String query = "INSERT INTO zamowienie VALUES(null, "+seanceId+", current_date, "+reservationController.isBuying;
+        if(Main.logged){
+            query += " " + Main.ID;
+        }
+        query += " );";
         try {
             QueryExecutor.executeQuery(query);
         } catch (Exception e){
@@ -244,8 +253,24 @@ public class ticketNumberController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        ArrayList<Integer> discount = new ArrayList<>();
+        for(int i=0; i<normal; i++){
+            discount.add(4);
+        }
+        for(int i=0; i<student; i++){
+            discount.add(1);
+        }
+        for(int i=0; i<retired; i++){
+            discount.add(2);
+        }
+        for(int i=0; i<veteran; i++){
+            discount.add(3);
+        }
+        for(int i=0; i<worker; i++){
+            discount.add(5);
+        }
         for(int i=0; i<reservationController.amountOfTickets; i++){
-            query = "INSERT INTO bilet VALUES("+id_order+", 4, " + reservationController.rows.get(i) +", "
+            query = "INSERT INTO bilet VALUES("+id_order+", "+ discount.get(i)+ ", " + reservationController.rows.get(i) +", "
                     + reservationController.columns.get(i) + ");";
             try {
                 QueryExecutor.executeQuery(query);
