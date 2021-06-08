@@ -44,10 +44,24 @@
          <content>
             <AnchorPane>
                <children>
-                  <HBox fx:id="container" alignment="CENTER_RIGHT" prefHeight="121.0" prefWidth="1280.0" spacing="10.0">
+                  <HBox fx:id="container" alignment="CENTER_RIGHT" prefHeight="120.0" prefWidth="1280.0" spacing="10.0">
                      <children>
-                        <Text fx:id="pageText" strokeType="OUTSIDE" strokeWidth="0.0" text="Page:" />
+                        <StackPane prefHeight="120.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e6f0fa" height="40.0" stroke="BLACK" strokeType="INSIDE" width="120.0">
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </Rectangle>
+                              <Text fx:id="pageText" strokeType="OUTSIDE" strokeWidth="0.0" text="Page:" StackPane.alignment="CENTER_LEFT">
+                                 <StackPane.margin>
+                                    <Insets left="5.0" />
+                                 </StackPane.margin>
+                              </Text>
+                           </children>
+                        </StackPane>
                         <TextField fx:id="pageField" />
+                        <ChoiceBox fx:id="genreChoice" prefWidth="150.0" />
                         <ChoiceBox fx:id="filterChoice" prefWidth="150.0" />
                         <Button mnemonicParsing="false" onAction="#applyFilter" text="Apply" />
                      </children>

@@ -31,7 +31,7 @@ public class signUpController {
 
     public void register(){
         String name = nameField.getText();
-        String surname = nameField.getText();
+        String surname = surnameField.getText();
         String login = loginField.getText();
         String password = passwordField.getText();
         String query = "INSERT INTO klient VALUES(NULL,'" + name + "','" + surname + "','2000-02-02','" +login + "','" + password + "');";

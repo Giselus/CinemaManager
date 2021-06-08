@@ -1,6 +1,9 @@
 package sample.controllers;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableArrayBase;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -17,6 +20,7 @@ import sample.QueryExecutor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class baseController {
 
@@ -72,6 +76,9 @@ public class baseController {
     public static FilterType filter = FilterType.ScoreDown;
 
     @FXML
+    ChoiceBox<String> genreChoice;
+
+    @FXML
     ChoiceBox<String> filterChoice;
 
     @FXML
@@ -89,6 +96,7 @@ public class baseController {
             case "From Z to A" -> filter = FilterType.AlphabeticalDown;
         }
         page = Integer.parseInt(pageField.getText());
+        genreFilter = genreChoice.getSelectionModel().getSelectedItem();
         refreshMovies();
     }
 
@@ -97,19 +105,37 @@ public class baseController {
     @FXML
     VBox movieBox;
 
-    private void refreshMovies(){
+    String genreFilter = "Every genre";
+
+    private void refreshMovies() {
         // filters
-        //TODO: add filter for genre
+        ObservableList<String> genres = FXCollections.observableArrayList();
+        genres.add("Every genre");
+        try {
+            String genresQuery = "SELECT * FROM gatunek";
+            ResultSet genresResult = QueryExecutor.executeSelect(genresQuery);
+            while (genresResult.next()){
+                genres.add(genresResult.getString("rodzaj"));
+            }
+            genreChoice.setItems(genres);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         filterChoice.setItems(FXCollections.observableArrayList(
                 "Score from highest", "Score from lowest" , "From A to Z", "From Z to A"));
         switch (filter) {
             case ScoreDown -> filterChoice.getSelectionModel().select(0);
             case ScoreUp -> filterChoice.getSelectionModel().select(1);
-            case AlphabeticalDown -> filterChoice.getSelectionModel().select(2);
-            case AlphabeticalUp -> filterChoice.getSelectionModel().select(3);
+            case AlphabeticalUp -> filterChoice.getSelectionModel().select(2);
+            case AlphabeticalDown -> filterChoice.getSelectionModel().select(3);
         }
+        genreChoice.getSelectionModel().select(genreFilter);
         pageField.setText(String.valueOf(page));
         String moviesNo = "SELECT COUNT(*) FROM film";
+        if(genreFilter != "Every genre")
+            moviesNo = String.format("SELECT COUNT(*) FROM film WHERE id IN (SELECT id_filmu " +
+                    "FROM gatunek JOIN film_gatunek ON id = id_gatunku WHERE rodzaj = '%s');",genreFilter);
         ResultSet moviesNoResult = QueryExecutor.executeSelect(moviesNo);
         try {
             if(moviesNoResult.next()) {
@@ -121,6 +147,9 @@ public class baseController {
         }
         // movies
         String query = "SELECT * FROM film_filtry ";
+        if(genreFilter != "Every genre")
+            query = String.format("SELECT * FROM film_filtry WHERE id IN (SELECT id_filmu " +
+                    "FROM gatunek JOIN film_gatunek ON id = id_gatunku WHERE rodzaj = '%s') ",genreFilter);
         switch (filter) {
             case ScoreDown -> query += "ORDER BY score DESC";
             case ScoreUp -> query += "ORDER BY score ASC";
@@ -137,7 +166,7 @@ public class baseController {
                 String title = result.getString("tytul");
                 float score = result.getFloat("score");
                 score = Math.round(score * 100)/100f;
-                //Todo: just generate movies and so
+
                 AnchorPane moviePane = new AnchorPane();
                 Rectangle rectangle = new Rectangle();
                 rectangle.setWidth(1280);

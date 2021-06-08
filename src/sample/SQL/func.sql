@@ -179,7 +179,7 @@ $$ language plpgsql;
 
 CREATE OR REPLACE FUNCTION historia_data_check() RETURNS TRIGGER AS $$
 BEGIN
-    IF OLD = NULL THEN
+    IF OLD IS NULL THEN
         NEW.data_wystawienia = current_date;
         RETURN NEW;
     END IF;

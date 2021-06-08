@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import sample.Main;
 import sample.QueryExecutor;
@@ -140,8 +142,8 @@ public class movieController {
             System.out.println("You are not logged :c");
             return;
         }
-        String addCommentQuery = String.format("INSERT INTO historia_ocen(id_filmu, id_klienta, ocena, komentarz)" +
-                        " VALUES(%d, %d, %d, '%s');",
+        String addCommentQuery = String.format("INSERT INTO historia_ocen" +
+                        " VALUES(%d, %d, %d, current_date,'%s');",
                 movieID,Main.ID,Integer.valueOf(scoreField.getText()),commentArea.getText());
         QueryExecutor.executeQuery(addCommentQuery);
         commentArea.setText("");
@@ -176,17 +178,42 @@ public class movieController {
             commentsPageField.setText(String.valueOf(commentsPage));
 
             String commentsQuery = String.format("SELECT * FROM film_komentarze WHERE id = %d;",movieID);
-            //String commentsQuery = String.format("SELECT * FROM historia_ocen " +
-              //      "WHERE id_filmu = %d ORDER BY data_wystawienia DESC LIMIT 10 OFFSET %d;",movieID, (commentsPage-1)*10);
             ResultSet comments = QueryExecutor.executeSelect(commentsQuery);
             commentsBox.getChildren().clear();
             while(comments.next()){
                 AnchorPane commentPane = new AnchorPane();
-                commentPane.setPrefWidth(1080);
+                commentPane.setPrefWidth(1280);
                 Text comment = new Text();
+
+                Rectangle rectangle = new Rectangle();
+                rectangle.setWidth(1280);
+                rectangle.setHeight(140);
+                rectangle.setFill(Color.valueOf("#c8cccb"));
+
+                comment.setLayoutY(25);
                 comment.wrappingWidthProperty().set(600);
                 comment.setText(comments.getString("komentarz"));
+
+                Text nameSurname = new Text();
+                nameSurname.setLayoutX(610);
+                nameSurname.setLayoutY(25);
+                nameSurname.setText(comments.getString("imie") + " " + comments.getString("nazwisko"));
+
+                Text score = new Text();
+                score.setLayoutX(610);
+                score.setLayoutY(50);
+                score.setText("Score given: " + comments.getString("ocena") + "*");
+
+                Text date = new Text();
+                date.setLayoutX(610);
+                date.setLayoutY(75);
+                date.setText(comments.getString("data_wystawienia"));
+
+                commentPane.getChildren().add(rectangle);
                 commentPane.getChildren().add(comment);
+                commentPane.getChildren().add(nameSurname);
+                commentPane.getChildren().add(score);
+                commentPane.getChildren().add(date);
                 commentsBox.getChildren().add(commentPane);
             }
         }catch(Exception e){
