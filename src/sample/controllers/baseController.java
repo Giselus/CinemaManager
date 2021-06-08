@@ -56,7 +56,7 @@ public class baseController {
         }else{
 
             loginButton.setText("Account");
-            loginButton.setOnAction(e -> Main.setScene("/sample/fxml/account.fxml","/sample/style/style.css"));
+            loginButton.setOnAction(e -> Main.setScene("/sample/fxml/account.fxml","/sample/style/styleAccount.css"));
             signupButton.setText("Log out");
             signupButton.setOnAction(e -> {
                 Main.logged = false;
@@ -171,7 +171,8 @@ public class baseController {
                 Rectangle rectangle = new Rectangle();
                 rectangle.setWidth(1280);
                 rectangle.setHeight(200);
-                rectangle.setId("rectangleId");
+                //rectangle.setId("rectangleId");
+                //rectangle.setStyle("-fx-fill: red; -fx-stroke: black; -fx-stroke-width: 525;");
                 rectangle.setFill(Paint.valueOf("#c8cccb"));
                 Text titleText = new Text();
                 titleText.setFont(Font.font("Arial", 30));
