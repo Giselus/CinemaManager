@@ -236,7 +236,7 @@ public class ticketNumberController {
         int id_order = 0;
         String query = "INSERT INTO zamowienie VALUES(null, "+seanceId+", current_date, "+reservationController.isBuying;
         if(Main.logged){
-            query += " " + Main.ID;
+            query += ", " + Main.ID;
         }
         query += " );";
         try {

@@ -20,6 +20,8 @@ import sample.QueryExecutor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class baseController {
@@ -32,8 +34,6 @@ public class baseController {
     Button loginButton;
     @FXML
     Button signupButton;
-    @FXML
-    Button testCode;
     @FXML
     public void initialize(){
         refreshLook();
@@ -165,6 +165,7 @@ public class baseController {
                 int id = result.getInt("id");
                 String title = result.getString("tytul");
                 float score = result.getFloat("score");
+                Timestamp premiere_date = result.getTimestamp("data_premiery");
                 score = Math.round(score * 100)/100f;
 
                 AnchorPane moviePane = new AnchorPane();
@@ -197,11 +198,15 @@ public class baseController {
                 button.setLayoutX(565);
                 button.setLayoutY(155);
                 Button button2=new Button();
-                button2.setOnAction(e -> goToMovie(id));
+                button2.setOnAction(e -> goToRepertoire(title));
                 button2.setId("test");
                 button2.setText("Seanse");
                 button2.setLayoutX(650);
                 button2.setLayoutY(155);
+
+                Text date_premiere = createDate(premiere_date);
+                Text genre_text = createGenre(id);
+                Text languages = createLanguage(id);
 
                 moviePane.getChildren().add(rectangle);
                 moviePane.getChildren().add(titleText);
@@ -209,7 +214,9 @@ public class baseController {
                 moviePane.getChildren().add(marks);
                 moviePane.getChildren().add(button);
                 moviePane.getChildren().add(button2);
-
+                moviePane.getChildren().add(date_premiere);
+                moviePane.getChildren().add(genre_text);
+                moviePane.getChildren().add(languages);
                 movieBox.getChildren().add(moviePane);
             }
         }catch(Exception e){
@@ -217,6 +224,8 @@ public class baseController {
         }
         // pages
     }
+
+
     private void goToMovie(int id){
         movieController.movieID = id;
         Main.setScene("/sample/fxml/movie.fxml","/sample/style/style.css");
@@ -225,5 +234,64 @@ public class baseController {
         repertoireController.fromBase = true;
         repertoireController.movie_name = name;
         Main.setScene("/sample/fxml/repertoire.fxml","/sample/style/style.css");
+    }
+
+    private Text createDate(Timestamp date){
+        Text dates = new Text();
+        dates.setText("Premiere: " + date.toString().substring(0, 10));
+        dates.setFont(Font.font("Arial", 20));
+        dates.setLayoutX(5);
+        dates.setLayoutY(77);
+        return dates;
+    }
+
+    private Text createGenre(int id){
+        Text result = new Text();
+        String query = "SELECT g.rodzaj FROM film JOIN film_gatunek fg ON film.id = fg.id_filmu " +
+                "JOIN gatunek g ON g.id = fg.id_gatunku where film.id = " + id + ";";
+        String solve = "";
+        try{
+            ResultSet resultSet = QueryExecutor.executeSelect(query);
+            while(resultSet.next()){
+                solve += resultSet.getString(1) + ", ";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(solve.isEmpty()){
+            result.setText("Genres: unknown");
+        } else {
+            solve = solve.substring(0, solve.length()-2);
+            result.setText("Genres: " + solve);
+        }
+        result.setLayoutX(5);
+        result.setLayoutY(100);
+        result.setFont(Font.font("Arial", 20));
+        return result;
+    }
+
+    private Text createLanguage(int id){
+        Text result = new Text();
+        String query = "SELECT g.jezyk_oryginalu FROM film JOIN film_jezyk fg ON film.id = fg.id_filmu " +
+                "JOIN jezyk g ON g.id = fg.id_jezyk where film.id = " + id + ";";
+        String solve = "";
+        try{
+            ResultSet resultSet = QueryExecutor.executeSelect(query);
+            while(resultSet.next()){
+                solve += resultSet.getString(1) + ", ";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(solve.isEmpty()){
+            result.setText("Languages: unknown");
+        } else {
+            solve = solve.substring(0, solve.length()-2);
+            result.setText("Languages: " + solve);
+        }
+        result.setLayoutX(5);
+        result.setLayoutY(123);
+        result.setFont(Font.font("Arial", 20));
+        return result;
     }
 }

@@ -30,6 +30,11 @@ public class repertoireController {
     public static int cena = 0;
     public static int seans = 0;
     @FXML public DatePicker callendar;
+    @FXML public ChoiceBox<String> filterGenre;
+    @FXML Button baseButton;
+    @FXML Button repertoireButton;
+    @FXML Button loginButton;
+    @FXML Button signupButton;
 
     public void initialize() {
         callendar.setValue(LocalDate.now());
@@ -47,6 +52,18 @@ public class repertoireController {
             e.printStackTrace();
         }
         filterChoice.setValue("All");
+        filterGenre.getItems().add("All - genres");
+        filterGenre.setValue("All - genres");
+        query = "SELECT * FROM gatunek;";
+        try{
+            ResultSet result = QueryExecutor.executeSelect(query);
+            while(result.next()){
+                String temp_name = result.getString(2);
+                filterGenre.getItems().add(temp_name);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         if(!fromBase) {
             query = "SELECT * FROM seans JOIN film ON seans.id_filmu = film.id" +
                     " WHERE data_rozpoczecia > current_date ORDER BY data_rozpoczecia;";
@@ -56,6 +73,7 @@ public class repertoireController {
             filterChoice.setValue(movie_name);
             setUpView(createQueryFromChoiceBox(filterChoice));
         }
+        refreshUpper();
     }
     @FXML public void applyFilter(){
         setUpView(createQueryFromChoiceBox(filterChoice));
@@ -64,14 +82,26 @@ public class repertoireController {
     public String createQueryFromChoiceBox(ChoiceBox<String> choiceBox){
         String boxItem = choiceBox.getValue();
         LocalDate calendar = callendar.getValue();
-
-        String query = "SELECT * FROM seans JOIN film ON seans.id_filmu = film.id" +
-                " WHERE data_rozpoczecia > '" + calendar.toString()+"'";
-        if(boxItem.equals("All")){
-            query += " ORDER BY data_rozpoczecia;";
+        String genreItem = filterGenre.getValue();
+        if(genreItem.equals("All - genres")){
+            String query = "SELECT * FROM seans JOIN film ON seans.id_filmu = film.id" +
+                    " WHERE data_rozpoczecia > '" + calendar.toString()+"'";
+            if(boxItem.equals("All")){
+                query += " ORDER BY data_rozpoczecia;";
+                return query;
+            }
+            query += "and film.tytul = '" + boxItem + "' ORDER BY data_rozpoczecia;";
             return query;
         }
-        query += "and film.tytul = '" + boxItem + "' ORDER BY data_rozpoczecia;";
+        String query = "SELECT * FROM seans JOIN film f ON seans.id_filmu = f.id JOIN film_gatunek fg ON f.id = fg.id_filmu JOIN gatunek g ON fg.id_gatunku = g.id" +
+                " WHERE data_rozpoczecia > '" + calendar.toString()+"'";
+        if(boxItem.equals("All")){
+            query += " and g.rodzaj = '" + genreItem + "' ORDER BY data_rozpoczecia;" ;
+        } else {
+            query += " and g.rodzaj = '" + genreItem + "' ";
+            query += "and f.tytul = '" + boxItem + "' ORDER BY data_rozpoczecia;";
+        }
+        System.out.println(query);
         return query;
     }
     public void setUpView(String query){
@@ -220,5 +250,28 @@ public class repertoireController {
             e.printStackTrace();
         }
         return new Text();
+    }
+    private void refreshUpper(){
+        baseButton.setOnAction(e -> Main.setScene("/sample/fxml/base.fxml","/sample/style/styleBase.css"));
+        repertoireButton.setOnAction(e -> Main.setScene("/sample/fxml/repertoire.fxml","/sample/style/style.css"));
+        if(!Main.logged){
+            loginButton.setText("Log in");
+            loginButton.setOnAction((e) -> Main.setScene("/sample/fxml/logIn.fxml","/sample/style/styleLogIn.css"));
+            signupButton.setText("Sign up");
+            signupButton.setOnAction((e) -> Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css"));
+            //testCode.setOnAction((e) -> Main.setScene("/sample/fxml/reservation.fxml","/sample/style/styleReservation.css"));
+        }else{
+
+            loginButton.setText("Account");
+            loginButton.setOnAction(e -> Main.setScene("/sample/fxml/account.fxml","/sample/style/styleAccount.css"));
+            signupButton.setText("Log out");
+            signupButton.setOnAction(e -> {
+                Main.logged = false;
+                refreshLook();
+            });
+        }
+    }
+    private void refreshLook(){
+        refreshUpper();
     }
 }

@@ -133,7 +133,7 @@ INSERT INTO film_jezyk VALUES
 	(18, 1),
 	(19, 1),
 	(20, 1),
-	(4, 2),
+	(4, 1),
 	(4, 3);
 	
 INSERT INTO film_wytwornia VALUES

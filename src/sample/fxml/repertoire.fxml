@@ -46,6 +46,7 @@
                     <HBox alignment="CENTER_RIGHT" layoutX="-94.0" layoutY="10.0" prefHeight="100.0" prefWidth="1280.0" spacing="10.0">
                         <children>
                      <DatePicker fx:id="callendar" />
+                     <ChoiceBox fx:id="filterGenre" prefWidth="150.0" />
                      <ChoiceBox fx:id="filterChoice" prefWidth="150.0" />
                         </children>
                         <padding>
