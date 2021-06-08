@@ -83,9 +83,6 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception{
-        initializeDatabase();
-        initializeFunctions();
-
         primaryStage.setResizable(false);
         mainStage=primaryStage;
         setScene("fxml/firstScene.fxml","/sample/style/styleLogin.css");

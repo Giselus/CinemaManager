@@ -15,6 +15,8 @@ public class firstSceneController {
     @FXML public void confirm(){
         DBConnector.USER=loginField.getText();
         DBConnector.PASSWORD=passwordField.getText();
+        Main.initializeDatabase();
+        Main.initializeFunctions();
         Main.setScene("fxml/base.fxml","/sample/style/style.css");
     }
 }
