@@ -15,6 +15,10 @@ import java.util.ArrayList;
 public class ticketNumberController {
 
     @FXML public Button confirmButton;
+    @FXML public Button baseButton;
+    @FXML public Button repertoireButton;
+    @FXML public Button loginButton;
+    @FXML public Button signupButton;
     int manyTicket = 0;
     int filmPrice=0;
     @FXML
@@ -62,6 +66,7 @@ public class ticketNumberController {
     int retired=0;
     int a = 0,b=0,c=0,d=0,es=0;
     public void initialize(){
+        refreshUpper();
         manyTicket=reservationController.amountOfTickets;
         actualTicektValue.setText(String.valueOf(manyTicket));
         String query = "SELECT cena FROM seans WHERE id="+repertoireController.seans+";";
@@ -279,5 +284,28 @@ public class ticketNumberController {
             }
         }
         Main.setScene("/sample/fxml/base.fxml", "/sample/style/style.css");
+    }
+    private void refreshUpper(){
+        baseButton.setOnAction(e -> Main.setScene("/sample/fxml/base.fxml","/sample/style/style.css"));
+        repertoireButton.setOnAction(e -> Main.setScene("/sample/fxml/repertoire.fxml","/sample/style/style.css"));
+        if(!Main.logged){
+            loginButton.setText("Log in");
+            loginButton.setOnAction((e) -> Main.setScene("/sample/fxml/logIn.fxml","/sample/style/styleLogIn.css"));
+            signupButton.setText("Sign up");
+            signupButton.setOnAction((e) -> Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css"));
+            //testCode.setOnAction((e) -> Main.setScene("/sample/fxml/reservation.fxml","/sample/style/styleReservation.css"));
+        }else{
+
+            loginButton.setText("Account");
+            loginButton.setOnAction(e -> Main.setScene("/sample/fxml/account.fxml","/sample/style/styleAccount.css"));
+            signupButton.setText("Log out");
+            signupButton.setOnAction(e -> {
+                Main.logged = false;
+                refreshLook();
+            });
+        }
+    }
+    private void refreshLook(){
+        refreshUpper();
     }
 }

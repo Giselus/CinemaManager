@@ -142,11 +142,7 @@ public class repertoireController {
                 infoButton.setLayoutY(120);
                 infoButton.resize(140, 60);
                 infoButton.setText("INFO");
-                infoButton.setOnAction(event -> {
-                    sala = tmpSala;
-                    cena = tmpCena;
-                    Main.setScene("/sample/fxml/reservation.fxml", "/sample/style/styleReservation.css");
-                });
+                infoButton.setOnAction(event -> goToMovie(seansID));
                 moviePane.getChildren().add(rectangle);
                 moviePane.getChildren().add(title);
                 moviePane.getChildren().add(dur);
@@ -162,6 +158,10 @@ public class repertoireController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private void goToMovie(int id){
+        movieController.movieID = id;
+        Main.setScene("/sample/fxml/movie.fxml","/sample/style/style.css");
     }
     public Text createTitle(String movieTitle){
         Text title = new Text();
@@ -252,7 +252,7 @@ public class repertoireController {
         return new Text();
     }
     private void refreshUpper(){
-        baseButton.setOnAction(e -> Main.setScene("/sample/fxml/base.fxml","/sample/style/styleBase.css"));
+        baseButton.setOnAction(e -> Main.setScene("/sample/fxml/base.fxml","/sample/style/style.css"));
         repertoireButton.setOnAction(e -> Main.setScene("/sample/fxml/repertoire.fxml","/sample/style/style.css"));
         if(!Main.logged){
             loginButton.setText("Log in");

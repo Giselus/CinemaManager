@@ -47,9 +47,11 @@ public class movieController {
             loginButton.setOnAction((e) -> Main.setScene("/sample/fxml/logIn.fxml","/sample/style/styleLogIn.css"));
             signupButton.setText("Sign up");
             signupButton.setOnAction((e) -> Main.setScene("/sample/fxml/signUp.fxml","/sample/style/styleSignUp.css"));
+            //testCode.setOnAction((e) -> Main.setScene("/sample/fxml/reservation.fxml","/sample/style/styleReservation.css"));
         }else{
+
             loginButton.setText("Account");
-            loginButton.setOnAction(e -> Main.setScene("/sample/fxml/account.fxml","/sample/style/style.css"));
+            loginButton.setOnAction(e -> Main.setScene("/sample/fxml/account.fxml","/sample/style/styleAccount.css"));
             signupButton.setText("Log out");
             signupButton.setOnAction(e -> {
                 Main.logged = false;
