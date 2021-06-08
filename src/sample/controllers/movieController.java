@@ -6,6 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -71,7 +72,8 @@ public class movieController {
     ImageView moviePoster;
     @FXML
     VBox movieCast;
-
+    @FXML
+    VBox infoBox;
     private void refreshMovie(){
         try {
             String query = "SELECT * FROM film WHERE id = " + String.valueOf(movieID) + ";";
@@ -84,6 +86,71 @@ public class movieController {
                     scoreText.setText(String.valueOf(Math.round(scoreResult.getFloat(1)*100)/100f));
                 }
             }
+            query = String.format("SELECT DISTINCT studio FROM wytwornia WHERE id IN (SELECT id_wytwornia FROM" +
+                    " film_wytwornia WHERE id_filmu = %d)",movieID);
+            ResultSet result = QueryExecutor.executeSelect(query);
+            String wytwornie = "Companies: ";
+            boolean tmp = false;
+            while(result.next()){
+                if(tmp)
+                    wytwornie += ", ";
+                tmp = true;
+                wytwornie += result.getString("studio");
+            }
+            Text wytwornieText = new Text();
+            wytwornieText.setText(wytwornie);
+
+            query = String.format("SELECT DISTINCT rodzaj FROM gatunek WHERE id IN (SELECT id_gatunku FROM" +
+                    " film_gatunek WHERE id_filmu = %d)",movieID);
+            result = QueryExecutor.executeSelect(query);
+            String gatunki = "Genres: ";
+            tmp = false;
+            while(result.next()){
+                if(tmp)
+                    gatunki += ", ";
+                tmp = true;
+                gatunki += result.getString("rodzaj");
+            }
+            Text gatunkiText = new Text();
+            gatunkiText.setText(gatunki);
+
+            query = String.format("SELECT DISTINCT jezyk_oryginalu FROM jezyk WHERE id IN (SELECT id_jezyk FROM" +
+                    " film_jezyk WHERE id_filmu = %d)",movieID);
+            result = QueryExecutor.executeSelect(query);
+            String jezyki = "Languages: ";
+            tmp = false;
+            while(result.next()){
+                if(tmp)
+                    jezyki += ", ";
+                tmp = true;
+                jezyki += result.getString("jezyk_oryginalu");
+            }
+            Text jezykiText = new Text();
+            jezykiText.setText(jezyki);
+
+            query = String.format("SELECT DISTINCT kraj FROM kraj WHERE id IN (SELECT id_kraj FROM" +
+                    " film_kraj WHERE id_filmu = %d)",movieID);
+            result = QueryExecutor.executeSelect(query);
+            String kraje = "Production places: ";
+            tmp = false;
+            while(result.next()){
+                if(tmp)
+                    kraje += ", ";
+                tmp = true;
+                kraje += result.getString("kraj");
+            }
+            Text krajeText = new Text();
+            krajeText.setText(kraje);
+
+            infoBox.getChildren().clear();
+            gatunkiText.setWrappingWidth(600);
+            krajeText.setWrappingWidth(600);
+            jezykiText.setWrappingWidth(600);
+            wytwornieText.setWrappingWidth(600);
+            infoBox.getChildren().add(gatunkiText);
+            infoBox.getChildren().add(krajeText);
+            infoBox.getChildren().add(jezykiText);
+            infoBox.getChildren().add(wytwornieText);
 
             movieCast.getChildren().clear();
             query = String.format("SELECT * FROM film JOIN produkcja ON id = id_filmu AND id = %d",movieID);
