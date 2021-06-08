@@ -66,6 +66,8 @@ public class Main extends Application {
             QueryExecutor.executeQuery(query);
             query = Files.readString(Paths.get(Main.class.getResource("/sample/SQL/wypelnienie.sql").toURI()));
             QueryExecutor.executeQuery(query);
+            query = Files.readString(Paths.get(Main.class.getResource("/sample/SQL/random.sql").toURI()));
+            QueryExecutor.executeQueryWithoutReturns(query);
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -10,24 +10,56 @@ import java.sql.Statement;
 public class QueryExecutor {
 
     public static ResultSet executeSelect(String selectQuery){
-        try{
-            Connection connection = DBConnector.connect();
-            Statement statement = connection.createStatement();
-            return statement.executeQuery(selectQuery);
-        }catch(Exception e){
-            throw new RuntimeException(e.getMessage());
-            //TODO: change to some alert
+        Connection connection = DBConnector.connect();
+        try {
+            try {
+
+                Statement statement = connection.createStatement();
+                return statement.executeQuery(selectQuery);
+            } catch (Exception e) {
+                throw new RuntimeException(e.getMessage());
+            }finally {
+                connection.close();
+            }
+
+        }catch ( Exception e){
+            e.printStackTrace();
         }
+        return null;
     }
 
     public static void executeQuery(String query){
-        try{
-            Connection connection = DBConnector.connect();
-            Statement statement = connection.createStatement();
-            statement.execute(query);
-        }catch(Exception e){
-            throw new RuntimeException(e.getMessage());
-            //TODO: change to some alert
+        Connection connection = DBConnector.connect();
+        try {
+            try {
+                Statement statement = connection.createStatement();
+                statement.execute(query);
+            } catch (Exception e) {
+                throw new RuntimeException(e.getMessage());
+            }finally {
+                connection.close();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+    }
+
+    public static void executeQueryWithoutReturns(String query){
+        String T[] = query.split(";");
+        Connection connection = DBConnector.connect();
+        try {
+            for (String str : T) {
+                try {
+                    Statement statement = connection.createStatement();
+                    statement.execute(str);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

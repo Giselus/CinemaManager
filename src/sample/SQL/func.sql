@@ -245,7 +245,7 @@ CREATE OR REPLACE FUNCTION seans_data_check() RETURNS TRIGGER AS $$
 DECLARE
     f int;
 BEGIN
-    IF (SELECT data_premiery FROM film f WHERE f.id = NEW.id_filmu) > data_rozpoczecia THEN
+    IF (SELECT data_premiery FROM film f WHERE f.id = NEW.id_filmu) > NEW.data_rozpoczecia THEN
         RETURN NULL;
     END IF;
     f = (SELECT czas_trwania FROM film WHERE film.id = NEW.id_filmu);

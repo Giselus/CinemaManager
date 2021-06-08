@@ -1,6 +1,10 @@
+DROP TYPE IF EXISTS dzwiek_type CASCADE;
+DROP TYPE IF EXISTS plec CASCADE;
+CREATE TYPE dzwiek_type AS ENUM ('oryginal', 'lektor', 'dubbing');
+CREATE TYPE plec AS ENUM ('kobieta', 'mezczyzna');
 CREATE  TABLE film (
 	id                   integer  NOT NULL ,
-	tytul                varchar(50)  NOT NULL ,
+	tytul                varchar(200)  NOT NULL ,
 	data_premiery        date   ,
 	czas_trwania         integer  NOT NULL ,
 	CONSTRAINT unq_filmy_id UNIQUE ( id ) ,
@@ -159,7 +163,7 @@ CREATE  TABLE historia_ocen (
 	id_klienta           integer  NOT NULL ,
 	ocena                integer  NOT NULL ,
 	data_wystawienia     date  NOT NULL default current_date,
-	komentarz            varchar(250)  NOT NULL ,
+	komentarz            text  NOT NULL ,
 	CONSTRAINT fk_historia_ocen_klient FOREIGN KEY ( id_klienta ) REFERENCES klient( id )   ,
 	CONSTRAINT fk_historia_ocen_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   
  );
