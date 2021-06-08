@@ -46,8 +46,6 @@ public class accountController {
         surnameLabel.setText(String.valueOf(surname));
     }
     public void backToMenu(){
-        Main.setScene("/sample/fxml/base.fxml","/sample/style/styleBase.css");
+        Main.setScene("/sample/fxml/base.fxml","/sample/style/style.css");
     }
-
-
 }

@@ -81,7 +81,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         initializeDatabase();
@@ -89,7 +88,7 @@ public class Main extends Application {
 
         primaryStage.setResizable(false);
         mainStage=primaryStage;
-        setScene("fxml/base.fxml","/sample/style/style.css");
+        setScene("fxml/firstScene.fxml","/sample/style/styleLogin.css");
 
     }
     public static void main(String[] args) {

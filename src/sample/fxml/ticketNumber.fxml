@@ -15,7 +15,6 @@
          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5821e" height="150.0" stroke="BLACK" strokeType="INSIDE" width="1080.0" />
          <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="174.0" spacing="10.0">
             <children>
-               <Button fx:id="testCode" mnemonicParsing="false" text="test" />
                <Button fx:id="baseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Movie base" />
                <Button fx:id="repertoireButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repertoire" />
                <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Log in/account" />
@@ -35,7 +34,7 @@
          </Text>
       </children>
    </StackPane>
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="371.0" layoutX="332.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="458.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d5d5d5" height="371.0" layoutX="332.0" layoutY="240.0" stroke="BLACK" strokeType="INSIDE" width="458.0" />
    <Button layoutX="345.0" layoutY="295.0" mnemonicParsing="false" onAction="#addNormal" prefHeight="26.0" prefWidth="29.0" text="+" />
    <Button layoutX="380.0" layoutY="295.0" mnemonicParsing="false" onAction="#subNormal" prefHeight="26.0" prefWidth="29.0" text="-" />
    <Button layoutX="345.0" layoutY="340.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="26.0" prefWidth="29.0" text="+" />
@@ -122,12 +121,12 @@
          <Font size="18.0" />
       </font>
    </Text>
-   <Text layoutX="128.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticekt">
+   <Text fill="WHITE" layoutX="128.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket left">
       <font>
          <Font size="18.0" />
       </font>
    </Text>
-   <Text fx:id="actualTicektValue" layoutX="144.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" />
+   <Text fx:id="actualTicektValue" fill="WHITE" layoutX="144.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" />
    <Text layoutX="701.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
       <font>
          <Font size="25.0" />
@@ -168,5 +167,5 @@
          <Font size="18.0" />
       </font>
    </Text>
-   <Button fx:id="confirmButton" onAction="#addTickets" layoutX="890.0" layoutY="582.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="Confirm" />
+   <Button fx:id="confirmButton" layoutX="890.0" layoutY="582.0" mnemonicParsing="false" onAction="#addTickets" prefHeight="29.0" prefWidth="71.0" text="Confirm" />
 </AnchorPane>

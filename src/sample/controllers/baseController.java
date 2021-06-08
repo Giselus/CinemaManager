@@ -45,7 +45,7 @@ public class baseController {
     }
 
     private void refreshUpper(){
-        baseButton.setOnAction(e -> Main.setScene("/sample/fxml/base.fxml","/sample/style/styleBase.css"));
+        baseButton.setOnAction(e -> Main.setScene("/sample/fxml/base.fxml","/sample/style/style.css"));
         repertoireButton.setOnAction(e -> Main.setScene("/sample/fxml/repertoire.fxml","/sample/style/style.css"));
         if(!Main.logged){
             loginButton.setText("Log in");
@@ -200,7 +200,7 @@ public class baseController {
                 Button button2=new Button();
                 button2.setOnAction(e -> goToRepertoire(title));
                 button2.setId("test");
-                button2.setText("Seanse");
+                button2.setText("Buy");
                 button2.setLayoutX(650);
                 button2.setLayoutY(155);
 
@@ -228,14 +228,13 @@ public class baseController {
 
     private void goToMovie(int id){
         movieController.movieID = id;
-        Main.setScene("/sample/fxml/movie.fxml","/sample/style/stylePerson.css");
+        Main.setScene("/sample/fxml/movie.fxml","/sample/style/style.css");
     }
     private void goToRepertoire(String name){
         repertoireController.fromBase = true;
         repertoireController.movie_name = name;
         Main.setScene("/sample/fxml/repertoire.fxml","/sample/style/style.css");
     }
-
     private Text createDate(Timestamp date){
         Text dates = new Text();
         dates.setText("Premiere: " + date.toString().substring(0, 10));
@@ -244,7 +243,6 @@ public class baseController {
         dates.setLayoutY(77);
         return dates;
     }
-
     private Text createGenre(int id){
         Text result = new Text();
         String query = "SELECT g.rodzaj FROM film JOIN film_gatunek fg ON film.id = fg.id_filmu " +

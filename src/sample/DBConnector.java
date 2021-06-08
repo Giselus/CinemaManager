@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class DBConnector {
 
-    private static String URL = "jdbc:postgresql://localhost/IdProjekt?allowMultiQueries=true";
-    private static String USER = "postgres";
-    private static String PASSWORD = "projektid";
+    public static String URL = "jdbc:postgresql://localhost/IdProjekt?allowMultiQueries=true";
+    public static String USER = "postgres";
+    public static String PASSWORD = "projektid";
 
     public static Connection connect(){
         Connection connection = null;
