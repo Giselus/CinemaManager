@@ -12,7 +12,7 @@
     <children>
         <Button layoutX="458.0" layoutY="541.0" mnemonicParsing="false" onAction="#confirm" prefHeight="52.0" prefWidth="130.0" text="Confirm" />
         <Text fx:id="mainLogIn" fill="WHITE" layoutX="498.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in" wrappingWidth="112.744140625" />
-        <TextField fx:id="loginField" layoutX="443.0" layoutY="261.0" />
+        <TextField fx:id="loginField" layoutX="443.0" layoutY="261.0" text="postgres" />
         <Line endX="100.0" layoutX="521.0" layoutY="151.0" startX="-100.0" stroke="#f5821e" />
         <Line endX="168.42913818359375" endY="-1.34881591796875" layoutX="539.0" layoutY="216.0" startX="-192.50003051757812" startY="-1.1417236328125" stroke="#f5821e" />
         <Line endX="-100.00003051757812" endY="-133.6417236328125" layoutX="446.0" layoutY="349.0" startX="-100.68618774414062" startY="255.2928466796875" stroke="#f5821e" />
@@ -29,8 +29,8 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="hostField" layoutX="443.0" layoutY="382.0" />
-      <TextField fx:id="portField" layoutX="443.0" layoutY="437.0" />
+      <TextField fx:id="hostField" layoutX="443.0" layoutY="382.0" text="localhost" />
+      <TextField fx:id="portField" layoutX="443.0" layoutY="437.0" text="5432" />
       <TextField fx:id="databaseField" layoutX="443.0" layoutY="491.0" />
       <Text fill="WHITE" layoutX="504.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Host">
          <font>
