@@ -62,7 +62,8 @@ CREATE  TABLE produkcja (
 	id_pozycja           integer   ,
 	CONSTRAINT fk_tworcy_filmy FOREIGN KEY ( id_filmu ) REFERENCES film( id )   ,
 	CONSTRAINT fk_produkcja_osoby FOREIGN KEY ( id_osoba ) REFERENCES osoby( id )   ,
-	CONSTRAINT fk_produkcja_pozycja FOREIGN KEY ( id_pozycja ) REFERENCES pozycja( id )   
+	CONSTRAINT fk_produkcja_pozycja FOREIGN KEY ( id_pozycja ) REFERENCES pozycja( id )   ,
+	UNIQUE(id_filmu,id_osoba,id_pozycja)
  );
 
 CREATE  TABLE sala ( 
@@ -125,28 +126,32 @@ CREATE  TABLE film_gatunek (
 	id_filmu             integer  NOT NULL ,
 	id_gatunku           integer  NOT NULL ,
 	CONSTRAINT fk_film_gatunki FOREIGN KEY ( id_filmu ) REFERENCES film( id )   ,
-	CONSTRAINT fk_film_gatunki_gatunek FOREIGN KEY ( id_gatunku ) REFERENCES gatunek( id )   
+	CONSTRAINT fk_film_gatunki_gatunek FOREIGN KEY ( id_gatunku ) REFERENCES gatunek( id )   ,
+	UNIQUE(id_filmu,id_gatunku)
  );
 
 CREATE  TABLE film_jezyk ( 
 	id_filmu             integer  NOT NULL ,
 	id_jezyk             integer  NOT NULL ,
 	CONSTRAINT fk_film_jezyk_film_jezyk FOREIGN KEY ( id_jezyk ) REFERENCES jezyk( id )   ,
-	CONSTRAINT fk_film_jezyk_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   
+	CONSTRAINT fk_film_jezyk_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   ,
+	UNIQUE(id_filmu,id_jezyk)
  );
 
 CREATE  TABLE film_kraj ( 
 	id_filmu             integer  NOT NULL ,
 	id_kraj              integer  NOT NULL ,
 	CONSTRAINT fk_film_kraj_kraj FOREIGN KEY ( id_kraj ) REFERENCES kraj( id )   ,
-	CONSTRAINT fk_film_kraj_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   
+	CONSTRAINT fk_film_kraj_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   ,
+	UNIQUE (id_filmu,id_kraj)
  );
 
 CREATE  TABLE film_wytwornia ( 
 	id_filmu             integer  NOT NULL ,
 	id_wytwornia         integer  NOT NULL ,
 	CONSTRAINT fk_film_wytwornia_wytwornia FOREIGN KEY ( id_wytwornia ) REFERENCES wytwornia( id )   ,
-	CONSTRAINT fk_film_wytwornia_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   
+	CONSTRAINT fk_film_wytwornia_film FOREIGN KEY ( id_filmu ) REFERENCES film( id )   ,
+	UNIQUE (id_filmu,id_wytwornia)
  );
 
 CREATE  TABLE historia_ocen ( 
