@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import sample.Main;
 import sample.QueryExecutor;
@@ -87,22 +88,26 @@ public class personController {
 
     @FXML
     VBox roleBox;
-
     private void refreshInfo(){
+        //System.out.println("SIEMAAAA");
         try {
             String query = String.format("SELECT * FROM osoby WHERE id = %d;", personID);
             ResultSet result = QueryExecutor.executeSelect(query);
             if(result.next()){
                 nameText.setText(result.getString("imie") + " " + result.getString("nazwisko"));
+                nameText.setFont(Font.font ("Verdana", 25));
+                sexText.setFont(Font.font ("Verdana", 25));
                 if(result.getString("plec").equals("mezczyzna")){
-                    sexText.setText("male");
+                    sexText.setText("Sex: male");
                 }else{
-                    sexText.setText("female");
+                    sexText.setText("Sex: female");
                 }
+                birthText.setFont(Font.font ("Verdana", 25));
                 birthText.setText("Born: " + result.getString("data_urodzenia"));
                 String tmpQuery = String.format("SELECT * FROM kraj WHERE id = %d;",result.getInt("miejsce_urodzenia"));
                 ResultSet tmpResult = QueryExecutor.executeSelect(tmpQuery);
                 if(tmpResult.next()){
+                    countryText.setFont(Font.font ("Verdana", 25));
                     countryText.setText("Birth place: " + tmpResult.getString("kraj"));
                 }
             }
@@ -122,13 +127,16 @@ public class personController {
                 roleName.setText(result.getString("nazwa"));
                 movieDate.setText(result.getString("data_premiery"));
                 movieName.setText(result.getString("tytul"));
+                roleName.setFont(Font.font ("Verdana", 20));
+                movieDate.setFont(Font.font ("Verdana", 20));
+                movieName.setFont(Font.font ("Verdana", 20));
                 HBox box = new HBox();
                 box.setSpacing(20);
                 box.getChildren().add(movieName);
                 box.getChildren().add(roleName);
                 box.getChildren().add(movieDate);
                 Button button = new Button();
-                button.setText("");
+                button.setText("Check");
                 Integer p = result.getInt("id_filmu");
                 button.setOnAction(e -> {
                     movieController.movieID = p;

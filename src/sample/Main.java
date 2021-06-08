@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class Main extends Application {
     public static Stage mainStage;
     public static Object controller;
-
     private static ArrayList<Pair<String, String>> previousScenes = new ArrayList<>();
     private static String currentScene, currentStyle;
 

@@ -228,7 +228,7 @@ public class baseController {
 
     private void goToMovie(int id){
         movieController.movieID = id;
-        Main.setScene("/sample/fxml/movie.fxml","/sample/style/style.css");
+        Main.setScene("/sample/fxml/movie.fxml","/sample/style/stylePerson.css");
     }
     private void goToRepertoire(String name){
         repertoireController.fromBase = true;
