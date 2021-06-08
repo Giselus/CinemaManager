@@ -46,6 +46,6 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <Button layoutX="595.0" layoutY="547.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="94.0" text="Back" />
+      <Button layoutX="595.0" layoutY="547.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="49.0" prefWidth="94.0" text="Back" />
    </children>
 </AnchorPane>

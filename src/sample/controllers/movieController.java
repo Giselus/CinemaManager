@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import sample.Main;
 import sample.QueryExecutor;
@@ -80,10 +81,12 @@ public class movieController {
             ResultSet movieInfo = QueryExecutor.executeSelect(query);
             if (movieInfo.next()) {
                 titleText.setText(movieInfo.getString("tytul"));
+                titleText.setFont(Font.font ("Verdana", 30));
                 String scoreQuery = "SELECT score(" + movieID + ");";
                 ResultSet scoreResult = QueryExecutor.executeSelect(scoreQuery);
                 if(scoreResult.next()){
                     scoreText.setText(String.valueOf(Math.round(scoreResult.getFloat(1)*100)/100f));
+                    scoreText.setFont(Font.font ("Verdana", 30));
                 }
             }
             query = String.format("SELECT DISTINCT studio FROM wytwornia WHERE id IN (SELECT id_wytwornia FROM" +
@@ -99,6 +102,7 @@ public class movieController {
             }
             Text wytwornieText = new Text();
             wytwornieText.setText(wytwornie);
+            wytwornieText.setFont(Font.font ("Verdana", 20));
 
             query = String.format("SELECT DISTINCT rodzaj FROM gatunek WHERE id IN (SELECT id_gatunku FROM" +
                     " film_gatunek WHERE id_filmu = %d)",movieID);
@@ -113,7 +117,7 @@ public class movieController {
             }
             Text gatunkiText = new Text();
             gatunkiText.setText(gatunki);
-
+            gatunkiText.setFont(Font.font ("Verdana", 20));
             query = String.format("SELECT DISTINCT jezyk_oryginalu FROM jezyk WHERE id IN (SELECT id_jezyk FROM" +
                     " film_jezyk WHERE id_filmu = %d)",movieID);
             result = QueryExecutor.executeSelect(query);
@@ -127,7 +131,7 @@ public class movieController {
             }
             Text jezykiText = new Text();
             jezykiText.setText(jezyki);
-
+            jezykiText.setFont(Font.font ("Verdana", 20));
             query = String.format("SELECT DISTINCT kraj FROM kraj WHERE id IN (SELECT id_kraj FROM" +
                     " film_kraj WHERE id_filmu = %d)",movieID);
             result = QueryExecutor.executeSelect(query);
@@ -141,7 +145,7 @@ public class movieController {
             }
             Text krajeText = new Text();
             krajeText.setText(kraje);
-
+            krajeText.setFont(Font.font ("Verdana", 20));
             infoBox.getChildren().clear();
             gatunkiText.setWrappingWidth(600);
             krajeText.setWrappingWidth(600);
@@ -178,18 +182,20 @@ public class movieController {
                 castPane.getChildren().add(nameText);
                 castPane.getChildren().add(positonText);
                 nameText.setLayoutY(20);
-                positonText.setLayoutY(35);
-                nameText.setLayoutX(40);
-                positonText.setLayoutX(40);
+                positonText.setLayoutY(40);
+                nameText.setLayoutX(80);
+                positonText.setLayoutX(80);
+                nameText.setFont(Font.font ("Verdana", 20));
+                positonText.setFont(Font.font ("Verdana", 17));
                 Button button = new Button();
                 button.setOnAction(e -> {
                     personController.personID = id_osoby;
-                    Main.setScene("/sample/fxml/person.fxml","/sample/style/style.css");
+                    Main.setScene("/sample/fxml/person.fxml","/sample/style/stylePerson.css");
                 });
                 button.setLayoutY(0);
-                button.setPrefSize(10,10);
-                button.setMaxSize(10,10);
-                button.setText("");
+//                button.setPrefSize(10,10);
+//                button.setMaxSize(10,10);
+                button.setText("Check");
                 castPane.getChildren().add(button);
                 movieCast.getChildren().add(castPane);
             }
@@ -258,24 +264,25 @@ public class movieController {
                 rectangle.setFill(Color.valueOf("#c8cccb"));
 
                 comment.setLayoutY(25);
+                comment.setLayoutX(20);
                 comment.wrappingWidthProperty().set(600);
                 comment.setText(comments.getString("komentarz"));
-
+                comment.setFont(Font.font ("Verdana", 20));
                 Text nameSurname = new Text();
                 nameSurname.setLayoutX(610);
                 nameSurname.setLayoutY(25);
                 nameSurname.setText(comments.getString("imie") + " " + comments.getString("nazwisko"));
-
+                nameSurname.setFont(Font.font ("Verdana", 20));
                 Text score = new Text();
                 score.setLayoutX(610);
                 score.setLayoutY(50);
                 score.setText("Score given: " + comments.getString("ocena") + "*");
-
+                score.setFont(Font.font ("Verdana", 20));
                 Text date = new Text();
                 date.setLayoutX(610);
                 date.setLayoutY(75);
                 date.setText(comments.getString("data_wystawienia"));
-
+                date.setFont(Font.font ("Verdana", 20));
                 commentPane.getChildren().add(rectangle);
                 commentPane.getChildren().add(comment);
                 commentPane.getChildren().add(nameSurname);

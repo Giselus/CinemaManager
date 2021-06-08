@@ -1,6 +1,7 @@
 package sample.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -44,4 +45,9 @@ public class accountController {
         nameLabel.setText(String.valueOf(name));
         surnameLabel.setText(String.valueOf(surname));
     }
+    public void backToMenu(){
+        Main.setScene("/sample/fxml/base.fxml","/sample/style/styleBase.css");
+    }
+
+
 }
