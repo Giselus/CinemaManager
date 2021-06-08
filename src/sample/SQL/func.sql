@@ -236,3 +236,50 @@ DROP VIEW IF EXISTS role_osoby;
 CREATE OR REPLACE VIEW role_osoby AS (SELECT o.id,p.nazwa,f.id as id_filmu, f.tytul, f.data_premiery
 FROM produkcja JOIN osoby o ON id_osoba = o.id JOIN
 pozycja p ON p.id = id_pozycja JOIN film f ON f.id = id_filmu);
+
+CREATE INDEX film_tytul ON film (tytul);
+CREATE INDEX historia_data ON historia_ocen (data_wystawienia);
+CREATE INDEX seans_data ON seans (data_rozpoczecia);
+
+CREATE OR REPLACE FUNCTION seans_data_check() RETURNS TRIGGER AS $$
+DECLARE
+    f int;
+BEGIN
+    IF (SELECT data_premiery FROM film f WHERE f.id = NEW.id_filmu) > data_rozpoczecia THEN
+        RETURN NULL;
+    END IF;
+    f = (SELECT czas_trwania FROM film WHERE film.id = NEW.id_filmu);
+    IF EXISTS (SELECT * FROM seans s JOIN film f ON s.id_filmu = f.id WHERE s.id_sala = NEW.id_sala AND s.id != NEW.id
+    AND s.data_rozpoczecia <= NEW.data_rozpoczecia + ((f+30) * interval '1 minute') AND
+    s.data_rozpoczecia + ((f.czas_trwania + 30) * interval '1 minute') >= NEW.data_rozpoczecia) THEN
+        RETURN NULL;
+    END IF;
+    RETURN NEW;
+END;
+$$ language plpgsql;
+
+CREATE TRIGGER seans_data_check BEFORE INSERT OR UPDATE ON seans FOR EACH ROW EXECUTE PROCEDURE seans_data_check();
+
+CREATE OR REPLACE FUNCTION zajete_miejsca_check() RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.numer_rzedu > (SELECT liczba_rzedow FROM zamowienie z JOIN seans s ON z.id_seansu = s.id
+    JOIN sala ON sala.id = s.id_sala WHERE z.id = NEW.id_zamowienia) THEN
+        RETURN NULL;
+    END IF;
+    IF NEW.numer_miejsca > (SELECT miejsca_w_rzedzie FROM zamowienie z JOIN seans s ON z.id_seansu = s.id
+    JOIN sala ON sala.id = s.id_sala WHERE z.id = NEW.id_zamowienia) THEN
+        RETURN NULL;
+    END IF;
+    IF NEW.numer_rzedu <= 0 OR NEW.numer_miejsca <= 0 THEN
+        RETURN NULL;
+    END IF;
+    IF EXISTS(SELECT * FROM bilet b JOIN zamowienie z ON z.id = b.id_zamowienia JOIN seans s ON s.id = z.id_seansu
+    WHERE b.numer_rzedu = NEW.numer_rzedu AND b.numer_miejsca = NEW.numer_miejsca AND s.id = (SELECT s.id FROM
+    seans s JOIN zamowienie z ON s.id = z.id_seansu WHERE z.id = NEW.id_zamowienia)) THEN
+        RETURN NULL;
+    END IF;
+    RETURN NEW;
+END;
+$$ language plpgsql;
+
+CREATE TRIGGER zajete_miejsca_check BEFORE INSERT OR UPDATE ON bilet FOR EACH ROW EXECUTE PROCEDURE zajete_miejsca_check();
