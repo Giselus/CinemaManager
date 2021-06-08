@@ -3,7 +3,6 @@ CREATE  TABLE film (
 	tytul                varchar(50)  NOT NULL ,
 	data_premiery        date   ,
 	czas_trwania         integer  NOT NULL ,
-	plakat               bytea   ,
 	CONSTRAINT unq_filmy_id UNIQUE ( id ) ,
 	CONSTRAINT pk_filmy_id PRIMARY KEY ( id )
  );
@@ -26,7 +25,6 @@ CREATE  TABLE klient (
 	id                   integer  NOT NULL ,
 	imie                 varchar(20)  NOT NULL ,
 	nazwisko             varchar(20)  NOT NULL ,
-	data_urodzenia       date  NOT NULL ,
 	login                varchar(15)  NOT NULL ,
 	haslo                varchar(15)   ,
 	CONSTRAINT pk_klient_id PRIMARY KEY ( id ),
