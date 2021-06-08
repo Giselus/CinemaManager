@@ -26,7 +26,6 @@ public class firstSceneController {
         DBConnector.PORT=portField.getText();
         DBConnector.URL=String.format("jdbc:postgresql://%s:%s/%s",DBConnector.HOST,DBConnector.PORT,DBConnector.DATABASE);
         Main.initializeDatabase();
-        Main.initializeFunctions();
         Main.setScene("fxml/base.fxml","/sample/style/style.css");
     }
 }

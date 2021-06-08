@@ -72,20 +72,11 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
-    public static void initializeFunctions(){
-        try {
-            String query = Files.readString(Paths.get(Main.class.getResource("/sample/SQL/func.sql").toURI()));
-            QueryExecutor.executeQuery(query);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setResizable(false);
         mainStage=primaryStage;
-        setScene("fxml/firstScene.fxml","/sample/style/styleLogin.css");
+        setScene("fxml/firstScene.fxml","/sample/style/styleLogIn.css");
 
     }
     public static void main(String[] args) {
